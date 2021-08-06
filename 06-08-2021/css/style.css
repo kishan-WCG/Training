@@ -1,0 +1,153 @@
+
+.f1{
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 1px;
+  width: 50%;
+  height: 50%;
+  margin-right: 50%;
+  margin-left:  25%;
+  margin-top:  2%;
+  padding-bottom: 50px;
+}
+
+  .f2{
+  text-align: center;
+  width: 50%;
+  height: 50%;
+  margin-right: 50%;
+  margin-left:  25%;
+  margin-top:  2%;
+  padding-bottom: 50px;
+
+}
+
+.name{
+  margin-left: 25px;
+  width: 200px;
+  height: 25px;
+    padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+   background-color: white;
+  color: black;
+  border: 1px solid black;
+
+}
+
+.lname{
+  padding-left: 150px;
+   background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.prf{
+  margin-left: 25px;
+  padding-right: 280px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+   background-color: white;
+  color: black;
+  border: 1px solid black;
+
+}
+
+.zip-code{
+  margin-left: 3%;
+  width: 440px;
+  height: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+   background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.std{
+  margin-right: 210px;
+    padding-top: 10px;
+  padding-bottom: 10px;
+
+  
+}
+
+.std1 {
+  padding-top: 5px;
+  padding-bottom: 15px;
+  width: 200px;
+    margin-bottom: 10px;
+     background-color: white;
+  color: black;
+  border: 1px solid black;
+
+}
+.project-text{
+    margin-right: 250px;
+      margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 25px;
+   background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+.textarea{
+ margin-left: 25px;
+ margin-bottom: 25px ;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+
+
+
+}
+.std3{
+  margin-right: 150px;
+    padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+.file{
+
+  margin-right: -10px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding-right: 290px;
+  width: 140px;
+  height: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.gitup{
+  margin-right: 20px;
+  margin-left: 50px;
+
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  width: 140px;
+  height: 25px;
+  padding-right: 300px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+}
+
+.button {
+  background-color: #555555;
+} 
