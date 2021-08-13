@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> 23.	Take 5 numbers and calculate percentage. According to that percentage print grade</title>
+</head>
+<body>
+    <script>  
+                var mark1 = Number(prompt("Enter your mark 1"));
+                var mark2 = Number(prompt("Enter your mark 2"));
+                var mark3 = Number(prompt("Enter your mark 3 "));
+                var mark4 = Number(prompt("Enter your mark 4"));
+                var mark5 = Number(prompt("Enter your mark 5"));
+
+        document.write("<h2> Mark 1 : " + mark1 + "</h2>");
+        document.write("<h2> Mark 2 : " + mark2 + "</h2>");
+        document.write("<h2> Mark 3 : " + mark3 + "</h2>");
+        document.write("<h2> Mark 4 : " + mark4 + "</h2>");
+        document.write("<h2> Mark 5 : " + mark5 + "</h2>");
+
+        var sum = mark1 + mark2 + mark3 + mark4 + mark5;
+        var pr = sum / 5;
+        var result;
+        if (pr < 50) result = "F";
+        else if (pr >= 50 && pr < 60) result = "D";
+        else if (pr >= 60 && pr < 70) result = "C";
+        else if (pr >= 70 && pr < 80) result = "B";
+        else if (pr >= 80 && pr < 90) result = "A";
+        else if (pr > 90) result = "A+";
+
+        document.write("<h2> Result : " + result + "</h2>");
+           
+</script>
+
+
+</body>
+</html> .</title>
+</head>

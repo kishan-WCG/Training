@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>   5.Take a year and check whether it is leap year or not </title>
+</head>
+<body>
+    <script>
+        
+            const year = Number(prompt('Enter a year :'));            
+
+             if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400))
+             {
+                 document.write( year + "" + "is a leap year");
+             }
+                        
+             else{
+             
+                document.write( year + "" + "is a Not leap year ");
+             }
+
+    </script>
+
+</body>
+</html>
