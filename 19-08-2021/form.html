@@ -1,0 +1,107 @@
+<html>
+    <head><title>On Change Event on IMG</title></head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <style>
+        #fldset{
+            margin-left: 400px;
+            margin-right: 400px;
+            border: none;
+            box-shadow: 15px 15px 50px black;
+        }
+        #bg{
+            background-attachment: fixed;
+            background-image: url(form.jpg);
+            background-size: 100%;
+        }
+        #h1{
+            margin-left: 200px;
+            font-size: 40px;
+            font-family: 'Gloria Hallelujah', cursive;
+            margin-top: 15px;
+        }
+    .txt{
+        width: 360px;
+        height: 35px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-left: 180px;
+        border-radius: 15px 15px;
+        outline: none;
+        background-color: transparent;
+      
+    }
+    .lbl{
+        margin-left: 0px;
+        text-align: center;
+    }
+    .sub{
+        background-color: white;
+        border: none;
+        width: 100px;
+        height: 30px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+        margin-left: 50px;
+        
+        
+    }
+    </style>
+<body id="bg">
+   <div>
+        <fieldset id="fldset">
+            <div id="h1"> Create Account </div>
+       
+    <div>
+        <form name="form" method="post" action="" onsubmit="return validate()" ></form>
+       
+        <div class="lbl">Enter Your First Name </div>
+        <div><input type="text" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div class="lbl">Enter Your Middle Name </div>
+        <div><input type="text"  onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div class="lbl"> Enter Your Last Name </div>
+        <div><input type="text" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div class="lbl">Enter Your E-mail</div>
+        <div><input type="email" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div class="lbl"> Enter Your Contact Number </div>
+        <div><input type="number" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div class="lbl">Enter Your Address </div>
+        <div><input type="text" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div  class="lbl">Enter Your City </div>
+        <div><input type="text" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div class="lbl">Enter Your State</div>
+        <div><input type="text" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div class="lbl">Enter Your Hobbies </div>
+        <div><input type="text" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+        <div  class="lbl"> Enter Your Country </div>
+        <div><input type="text" onfocus="myFunction(this)" onblur="myFun(this)" class="txt"></div>
+
+    <div class="lbl"> <button class="sub">Submit </button> 
+                        </div>
+    </form>
+    </div>
+</div>
+</fieldset>
+<script>
+
+            function myFunction(x) {
+                x.style="border-color: black; border-width: thick;";
+            }
+            function myFun(x){
+                x.style="border-color:blue";
+            }
+        
+</script>
+
+</body>
+</html>

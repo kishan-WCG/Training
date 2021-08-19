@@ -1,0 +1,73 @@
+<html>
+    <head><title>On Change Event on IMG</title></head>
+    <style>
+        #divmain{
+            margin-left: 500px;
+            width: 525px;
+            height: 300px;
+            box-shadow: 15px 20px 50px black;
+            border-radius: 20px 15px;
+            margin-top: 150px;
+            padding-left: 100px;
+            padding-top: 50px;
+      }
+        #divmain1{
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+         #bg{
+            background-color: blanchedalmond;
+        }
+        #span{
+            margin-left: 170px;
+            font-size: 50px;
+        }
+        .s{
+            margin-left: 150px;
+            margin-top: 50px;
+            width: 80px;
+            height: 35px;
+            margin-right: 20px;
+        }
+        #stop{
+            width: 80px;
+            height: 35px;
+        }
+    </style>
+<body id="bg">
+<div id="divmain"> 
+       <input type="number" id="divmain1"> <br>
+       <span id="span"> </span> <br>
+       <button class="s" id="start"> Start</button>
+       <button id="stop" onclick="abc()"> Stop</button>
+   
+</div>
+<script>
+       
+     
+            document.getElementById("start").addEventListener("click", ()=>{
+            var colour = document.getElementById("divmain1").value;
+           
+            
+        
+             var set = setInterval(count, 1000);
+              function count() {
+              colour = colour -1 ;
+                //console.log(colour);
+               document.getElementById("span").innerHTML= colour;
+                if (colour != 0)
+                {
+                    clearInterval(colour)
+                }             
+              }
+                
+                 
+
+
+     });
+      
+    
+</script>
+
+</body>
+</html>

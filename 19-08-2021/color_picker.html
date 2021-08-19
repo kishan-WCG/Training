@@ -1,0 +1,49 @@
+<html>
+    <head><title>On Change Event on IMG</title></head>
+    <style>
+        .maindiv{
+            width: 1000px;
+            height: 350px;
+            box-shadow: 15px 20px 50px black;
+            border-radius: 20px 15px;
+            margin-top: 50px;
+            margin-left: 270px;
+        }
+  
+
+        #clr{
+            width: 150px;
+            height: 50px;
+            margin-left: 680px;
+            margin-top: 50px;
+            border: none;
+        }
+
+   
+        #btn{
+            width: 110px;
+            height: 40px;
+            margin-left: 700px;
+            margin-top: 10px;
+            background-color: cadetblue;
+            border: none;
+
+        }
+    </style>
+<body>
+    <div class="maindiv" id="div1"></div>
+    <div>
+        <input id="clr" type="color">
+        <br><button id="btn">Set Color</button>
+    </div>
+<script>
+            document.getElementById("btn").addEventListener("click", ()=>{
+            var colour = document.getElementById("clr").value;
+            document.getElementById("div1").style=`background-color: ${colour}`;
+        });
+
+
+</script>
+
+</body>
+</html>

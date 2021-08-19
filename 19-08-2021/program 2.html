@@ -1,0 +1,67 @@
+<html>
+    <head><title>On Change Event on IMG</title></head>
+    <style>
+        #divmain{
+            margin-left: 500px;
+            width: 400px;
+            height: 100px;
+            box-shadow: 15px 20px 50px black;
+            border-radius: 20px 15px;
+            margin-top: 220px;
+            padding-left: 100px;
+            padding-top: 50px;
+        
+        
+        }
+        #divmain1{
+            font-size: 35px;
+        }
+
+        #bg{
+            background-color: blanchedalmond;
+        }
+    </style>
+<body id="bg">
+<div id="divmain"> 
+    <b id="divmain1"> Hello Click Me.....!</b>
+   
+</div>
+
+
+
+
+<script>
+
+        document.getElementById("divmain1").addEventListener("click", div1, false)
+        function div1(){
+            document.getElementById("divmain"). style = "font-size: 35px;";
+            document.getElementById("divmain1").innerHTML = "Hiii";
+        }
+
+        document.getElementById("divmain1").addEventListener("dblclick", div2 , false)
+        function div2(){
+            document.getElementById("divmain"). style = "font-size: 35px;";
+            document.getElementById("divmain1").innerHTML = "Double Click......! ";
+        }
+        document.getElementById("divmain1").addEventListener("mouseenter", div3 , false)
+        function div3(){
+            document.getElementById("divmain"). style = "font-size: 35px;";
+            document.getElementById("divmain1").innerHTML = "MOUSE_ENTER.....!";
+        }
+
+        document.getElementById("divmain1").addEventListener("mouseleave", div4 , false)
+        function div4(){
+            document.getElementById("divmain"). style = "font-size: 35px;";
+            document.getElementById("divmain1").innerHTML = "MOUSE_LEAVE.....!";
+        }
+
+        
+        
+
+
+
+
+</script>
+
+</body>
+</html>

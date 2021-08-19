@@ -1,0 +1,55 @@
+<html>
+    <head><title>On Change Event on IMG</title></head>
+    <style>
+        #img1{
+            margin-left: 500px;
+            width: 500px;
+            height: 400px;
+            box-shadow: 15px 20px 50px black;
+            border-radius: 20px 15px;
+            margin-top: 120px;
+        }
+        #bg{
+            background-color: blanchedalmond;
+        }
+    </style>
+<body id="bg">
+<div>
+    <div id="div1">  
+        <img src="img/img01.jpg" id="img1">
+    </div>
+
+</div>
+
+
+
+<script>
+
+        document.getElementById("img1").addEventListener("click", div1, false)
+        function div1(){
+            document.getElementById("img1").src="img/img02.jpg";
+        }
+
+        document.getElementById("img1").addEventListener("dblclick", img2 , false)
+        function img2(){
+            document.getElementById("img1").src="img/img03.jpg";
+        }
+
+        document.getElementById("img1").addEventListener("mouseenter", img3 , false)
+        function img3(){
+            document.getElementById("img1").src="img/img04.jpg";
+        }
+
+        
+        document.getElementById("img1").addEventListener("mouseleave", img4 , false)
+        function img4(){
+            document.getElementById("img1").src="img/img05.jpg";
+        }
+
+
+
+
+</script>
+
+</body>
+</html>
