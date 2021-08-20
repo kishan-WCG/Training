@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery Example</title>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+    ></script>
+    <script type="text/javascript" language="javascript">
+     $(document).ready(function(){  
+    $("button").click(function(){  
+        $("#1").fadeIn();  
+        $("#2").fadeIn("slow");  
+        $("#3").fadeIn(3000);  
+    });  
+});  
+
+
+    </script>
+  </head>
+  <body>
+    <div id="1" style="width:800px;height:80px;display:none;background-color:bisque"></div>
+    <div id="2" style="width:800px;height:80px;display:none;background-color: blue"></div>
+    <div id="3" style="width:800px;height:80px;display:none;background-color: blueviolet"></div>
+    <button>Click to The boxes..</button><br><br> 
+  </body>
+</html>
