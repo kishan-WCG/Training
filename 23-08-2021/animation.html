@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Birdman.js jQuery Plugin Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+	<link href="css/animation.css" rel="stylesheet" media="all">
+	<link href='http://fonts.googleapis.com/css?family=BenchNine:700' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="js/birdman.js"></script>
+</head>
+<body>
+	<header role="banner">
+		<h1>Text Animation</h1>
+	</header>
+	
+	
+	<div class="wrap">
+		<!-- ARIA: the landmark role "main" is added here as it contains the main content of the document, and it is recommended to add it to the
+		<main> element until user agents implement the required role mapping. -->
+		<main role="main">
+			<p class="birdman">BIRDMAN.JS IS A JQUERY PLUGIN</p>
+			<p class="birdman">THAT CREATES THE ANIMATION OF</p>
+			<p class="birdman largerSpace">TEXT USED IN THE CREDITS OF</p>
+			<p class="birdman largestSpace">THE 2015 MOVIE &quot;BIRDMAN&quot;.</p>
+		</main>
+
+		<a href="javascript:$('.birdman').birdman({speedUp:false});void(0);"><div class="button" id="again">Reload</div></a>
+	
+	</div>
+	
+	<footer role="contentinfo">
+		<small></small>
+	</footer>
+
+	<script type="text/javascript">
+		$('.birdman').birdman({speedUp:false});
+		setTimeout(function(){
+			$('#again').fadeIn();
+			$('#github').fadeIn();
+		}, 4500);
+	</script>
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

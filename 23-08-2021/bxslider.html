@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <title>bxslider</title>
+    <style>
+        #h1{
+            margin-left: 250px;
+        }
+    </style>
+  </head>
+  <body> 
+      <div>
+      <div id="h1">
+          <h1>bxslider</h1>
+      </div>
+    <div class="bxslider">
+      <div>
+        <img
+          src="images/img.jpg"
+          title="web Developer"
+        />
+      </div>
+      <div>
+        <img
+          src="images/img1.jpg"
+          title="Web Designer"
+        />
+      </div>
+      <div>
+        <img
+          src="images/img2.jpg"
+          title="Team Marketing"
+        />
+      </div>
+      
+    </div>
+</div>
+<div>
+    <div id="h1">
+        <h1>bxslider</h1>
+    </div>
+  <div class="bxslider">
+    <div>
+      <img
+        src="images/img.jpg"
+        title="web Developer"
+      />
+    </div>
+    <div>
+      <img
+        src="images/img1.jpg"
+        title="Web Designer"
+      />
+    </div>
+    <div>
+      <img
+        src="images/img2.jpg"
+        title="Team Marketing"
+      />
+    </div>
+</div>
+  </div>
+  </body>
+  <script>
+    $(function () {
+      $(".bxslider").bxSlider({
+        mode: "fade",
+        captions: true,
+        slideWidth: 500,
+      });
+    });
+  </script>
+</html>

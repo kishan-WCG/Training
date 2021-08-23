@@ -30,5 +30,7 @@ function load(){
             .appendChild(document.createElement("h2")).innerText = name;
         }
     }
-
+function del(){
+    
+}
 
