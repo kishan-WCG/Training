@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+      .test {
+    border: 3px inset red;
+  }
+</style>
+<script>
+$(document).ready(function(){
+    
+  $("p:contains(is)").css("background-color", "yellow");
+  $( "td:empty" ).text( "Was empty!" ).css( "background", "rgb(255,220,200)" );
+  $( "div:has(p)" ).addClass( "test" );
+});
+</script>
+</head>
+<body>
+
+<h1>ContentFilters</h1>
+<!-- contains()  -->
+<p class="intro">My name is Donald.</p>
+<p>I live in Duckburg.</p>
+<p>My best friend is Mickey.</p>
+<p>My best friend is Mickey.</p>
+<!-- Empty -->
+<table border="2">
+    <tr><td>TD #0</td><td></td></tr>
+    <tr><td>TD #2</td><td></td></tr>
+    <tr><td></td><td>TD#5</td></tr>
+  </table>
+<!-- has -->
+  <div><p>Hello in a paragraph</p></div>
+<div>Hello again! (with no paragraph)</div>
+<!-- parent -->
+
+</body>
+</html>

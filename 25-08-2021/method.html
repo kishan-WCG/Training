@@ -1,0 +1,36 @@
+<html>
+  <body></body>
+  <script>
+    var obj = function () {
+      var i;
+      var calc = function (j) {
+        i = j;
+        return this;
+      };
+      var add = function (j) {
+        i = i + j;
+        return this;
+      };
+      var mult = function (j) {
+        i = i * j;
+        return this;
+      };
+      var div = function (j) {
+        i = i / j;
+        return this;
+      };
+      var sub = function (j) {
+        i = i - j;
+        return this;
+      };
+      var print = function () {
+        document.write(i);
+      };
+      return {calc: calc,add: add,mult: mult,div: div,sub: sub,print: print,};
+    };
+
+    var x = obj();
+      x.calc(10).add(5).mult(2).div(3).sub(2).print();
+
+  </script>
+</html>

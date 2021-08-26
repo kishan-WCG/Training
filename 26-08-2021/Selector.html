@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.class1{
+    background-color: crimson;
+}
+#id1{
+    background-color: darkgoldenrod;
+}
+#selector1{
+    border-radius: 20px 25px;
+}
+</style>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("*").hide();
+  });
+
+  
+$( "textarea, span, p" ).css( "border", "3px solid red" );
+// parent
+$("div > span").css("background-color", "yellow");
+
+$("div  span").css("background-color", "red");
+
+$("li.start").prev().css({"color": "red", "border": "2px solid red"});
+$("li.next").next().css({"color": "red", "border": "2px solid red"});
+$( "#prev ~ div" ).css( "border", "3px groove blue" ); 
+});
+</script>
+</head>
+<body>
+
+<h1></h1>
+<!-- ID And Class -->
+<h1 class="class1">Example Of " Class " </h1>
+<h1 id="id1">Example Of " ID " </h1>
+<!-- selecot 1-2-3 -->
+<textarea id="selector1">SELECTOR - 1</textarea>
+<p>SELECTOR - 2</p>
+<span>SELECTOR - 3</span> 
+
+<!-- parent -->
+<div style="border:1px solid black;padding:10px;">
+    <p>Perent </p>
+    <span> inside a span.</span>
+  </div>
+
+ 
+  <div style="border:1px solid black;padding:10px;">
+    <p>This is a paragraph. <span>This is a span element, inside the paragraph.</span></p>
+  </div>
+  
+
+  <div style="width:500px;" class="siblings">
+    <ul>ul (parent)  
+      <li>li (sibling)</li>
+     
+      <li>(Prev)</li>
+      <li class="start">li (sibling with class name "start")</li>
+      <li class="next">li (sibling) next</li>
+      <li>li (next)</li>
+    </ul>   
+  </div>
+<!-- prev ~ siblings -->
+  <div>div (doesn't match since before #prev)</div>
+  <span id="prev">span#prev</span>
+  <div>div sibling</div>
+  <div>div sibling <div id="small">div niece</div></div>
+  <div>div sibling</div>
+
+
+
+<br> <br>
+<button>Click me Example Of (*)</button>
+
+</body>
+</html>

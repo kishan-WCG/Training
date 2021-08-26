@@ -1,0 +1,67 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#btn1").click(function(){
+    $("#box").animate({height: "300px"});
+  });
+  $(":root").css("background-color", "#c7fcd6");
+  $("p").eq(1).css("background-color", "yellow");
+  $("p:even").css("background-color", "red");
+  $("div p").first().css("background-color", "yellow");
+  $("div p").last().css("background-color", "red");
+  $( "td:gt(5)" ).css( "backgroundColor", "yellow" );
+  $(":header").css("background-color", "red");
+  $("p:lang(it)").css("background-color", "yellow");
+});
+</script>
+</head>
+<body>
+
+<button id="btn1">Animate height</button>
+<div id="box" style="background:#c4132b;height:100px;width:100px;margin:6px;"></div>
+
+
+<h1>eq() Method</h1>
+
+<p>My name is Donald (index 0).</p>
+<p>Donald Duck (index 1).</p>
+<p>Donald (index 0)</p>
+<p>I live in Duckburg (index 2).</p>
+<p>My name is Donald (index 0).</p>
+<p>Donald Duck (index 1).</p>
+<p>Donald (index 0)</p>
+<p>I live in Duckburg (index 2).</p>
+
+<div style="border:1px solid black">
+  <p>p1 FIRST Method</p>
+  <p>p2. Last Method</p>
+</div><br>
+
+ <div>
+<table border="5">
+  <tr><td>TD #0</td><td>TD #1</td><td>TD #2</td></tr>
+  <tr><td>TD #3</td><td>TD #4</td><td>TD #5</td></tr>
+  <tr><td>TD #6</td><td>TD #7</td><td>TD #8</td></tr>
+</table>
+</div>
+
+  <section>
+<h1>Welcome to My Homepage</h1>
+<h2>My Fantastic Homepage</h2>
+
+<ul id="choose">
+  <li>Goofy</li>
+  <li>Mickey</li>
+  <li>Pluto</li>
+</ul>
+</section>
+
+
+<p>I live in Italy.</p>
+<p lang="it">Ciao bella!</p>
+
+
+</body>
+</html>
