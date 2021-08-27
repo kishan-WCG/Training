@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<input type="text"/> <br> <br>
+<button> Button </button> <br> <br>
+<input type="reset" name="Reset"> <br> <br>
+<input type="submit" name="submit"> <br> <br>
+<!-- checkbox -->
+<input type="checkbox"> <br> <br>
+<input type="checkbox"> <br><br>
+<input type="checkbox"> <br> <br>
+<input type="file"> <br> <br>
+<input type="hidden"><br><br>
+
+<form>
+    <!-- checked  -->
+    <p>
+      <input type="checkbox" name="newsletter" value="Hourly" checked="checked">
+   
+      <input type="checkbox" name="newsletter" value="Daily">
+      <input type="checkbox" name="newsletter" value="Weekly">
+   
+      <input type="checkbox" name="newsletter" value="Monthly" checked>
+      <input type="checkbox" name="newsletter" value="Yearly">
+    </p>
+  </form>
+
+  <input name="email" disabled="disabled">
+
+  <form>
+    <input name="email" disabled="disabled">
+    <input name="id">
+
+    <input type="password" placeholder="password"/>
+
+  </form>
+
+  <div id="content">
+    <input tabIndex="1">
+   
+    <select tabIndex="3">
+      <option>select menu</option>
+    </select>
+  
+  </div>
+   
+
+</body>
+
+<script>
+    // disabled
+    $( "input:disabled" ).val( "this is it" );
+    // enabled
+    $( "input:enabled" ).val( "this is it" );
+
+    $( "#content" ).delegate( "*", "focus blur", function() {
+  var elem = $( this );
+  setTimeout(function() {
+    elem.toggleClass( "focused", elem.is( ":focus" ) );
+  }, 0 );
+});
+    </script>
+</html>
