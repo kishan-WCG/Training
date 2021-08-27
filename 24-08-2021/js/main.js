@@ -1,11 +1,11 @@
 $(document).ready(function () {
-  initSample();
-  $("#example").DataTable({
-    dom: "Bfrtip",
-    buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
-  });
+  ClassicEditor.create(document.querySelector('#Introduction'));
+
    $.validator.setDefaults({ ignore: ":hidden:not(select)" });
+   $.validator.setDefaults({ ignore: ":hidden:not(select)" });
+
   $(registration).validate({
+    
     // aboutme validation
     ignore: "input:hidden:not(input:hidden.required)",
     rules: {
@@ -37,6 +37,40 @@ $(document).ready(function () {
        
       }
     },
+  });
+  
+  $("select").chosen({ width: "200px" });
+  initSample();
+  $("#example").DataTable({
+    dom: "Bfrtip",
+    buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
+  });
+
+
+  
+  // ckeditor
+
+ 
+  //  datepicker
+  $("#datepicker").datepicker({
+    changeMonth: true,
+    changeYear: true,
+  });
+  // chosen select city
+
+
+  var ed = CKEDITOR.replace("editor1");
+  ed.on("required", function (evt) {
+    $(".introerr").text("This field is required.");
+    evt.cancel();
+  });
+
+
+  lightbox.option({
+    resizeDuration: 200,
+    wrapAround: true,
+    fadeDuration: 2000,
+    positionFromTop: 130,
   });
    
 });
