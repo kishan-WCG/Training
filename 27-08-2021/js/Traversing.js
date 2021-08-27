@@ -1,11 +1,11 @@
 $(document).ready(function () {
   $("p").click(function () {
-    if ($(".m1 > p").parent().is("div")) {
+    if ($(".class1 > p").parent().is("div")) {
       alert("Parent of p is div");
     }
   });
 
-  $(".m2 button").click(function () {
+  $(".class2 button").click(function () {
     var array = [55, 12, 49, 89, 34, 88];
     var newArray = jQuery.map(array, function (val) {
       return val + 5;
@@ -14,22 +14,22 @@ $(document).ready(function () {
       "<b> The new array is: </b>" + JSON.stringify(newArray);
   });
 
-  $(".m3 p").slice(1, 3).css("background-color", "green");
+  $(".class3 p").slice(1, 3).css("background-color", "green");
 
   $(document).ready(function () {
-    $(".m4 p")
-      .add(document.getElementsByTagName(".m4 span")[0])
+    $(".class4 p")
+      .add(document.getElementsByTagName(".class4 span")[0])
       .css("background-color", "yellow");
   });
 
   $(".contents").click(function () {
-    $(".m5").contents().filter("em").wrap("<b/>");
+    $(".class5").contents().filter("em").wrap("<b/>");
   });
 
   $("#closest").click(function () {
     $("p")
-      .closest(".m6 div")
-      .css({ "font-size": "30px", color: "blue", border: "6px dashed blue" });
+      .closest(".class6 div")
+      .css({ "font-size": "30px", color: "red", border: "6px dashed red" });
   });
 
   $("#siblings").click(function () {
@@ -45,8 +45,8 @@ $(document).ready(function () {
   });
 
   $("#nextuntil").click(function () {
-    $(".m7 h1")
-      .nextUntil(".m7 h3")
+    $(".class7 h1")
+      .nextUntil(".class7 h3")
       .css({ color: "blue", border: "3px solid blue" });
   });
 });
