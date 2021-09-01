@@ -1,0 +1,58 @@
+[
+    {
+     "id":"1",
+     "name":"Gujarat ",
+     "parent_id":"0"
+    }, 
+    {
+     "id":"2",
+     "name":"Rajasthan",
+     "parent_id":"0"
+    }, 
+    {
+     "id":"3",
+     "name":"Maharashtra",
+     "parent_id":"0"
+    }, 
+    {
+     "id":"4",
+     "name":"Amreli",
+     "parent_id":"1"
+    }, 
+    {
+     "id":"5",
+     "name":"Rajkot",
+     "parent_id":"1"
+    }, 
+    {
+     "id":"6",
+     "name":"Ahemdabad",
+     "parent_id":"1"
+    }, 
+    {
+     "id":"7",
+     "name":"Jaipur",
+     "parent_id":"2"
+    }, 
+    {
+     "id":"8",
+     "name":"Jaisalmer",
+     "parent_id":"2"
+    }, 
+    {
+     "id":"9",
+     "name":"Pune",
+     "parent_id":"3"
+    }, 
+    {
+     "id":"10",
+     "name":"Nagpur",
+     "parent_id":"3"
+    },
+    {
+        "id":"11",
+        "name":"Nashik ",
+        "parent_id":"3"
+       }
+   
+]
