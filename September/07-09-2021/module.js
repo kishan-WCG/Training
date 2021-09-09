@@ -6,7 +6,6 @@ const path = require('path')
 // console.log(color.yellowBright('hello'))
 
 const fs = require('fs')
-// const { buffer } = require('node:stream/consumers')
 
 
 // folder create.
