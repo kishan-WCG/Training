@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-demo",
+  "version": "1.0.0",
+  "description": "this is Only Demo NPM",
+  "main": "file1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript"
+  ],
+  "author": "kishan limbasiya",
+  "license": "ISC",
+  "dependencies": {
+    "cli-color": "^2.0.0",
+    "nodemailer": "^6.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
