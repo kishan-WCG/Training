@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>
+ h3{
+     margin-left: 150px;
+ }
+  h5{
+     margin-left: 10px;
+ }
+ 
+    .ab{
+        width: 60%;
+        margin: auto;
+    
+    }
+</style>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="ab">
+<h3>Institute For Knowledge international School</h3>
+<h5>Student Name :- {{mysname}}</h5>
+<h5> Standard :- {{mystd}}</h5>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Subject Mark</th>
+      <th scope="col">Total Mark</th>
+      <th scope="col">Obtained marks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-primary">
+      <th>1</th>
+      <td>Mathematics</td>
+      <td>100</td>
+      <td>{{mysub1}}</td>
+    </tr>
+    <tr class="table-danger">
+      <th>2</th>
+      <td>English</td>
+      <td>100</td>
+      <td>{{mysub2}}</td>
+    </tr>
+    <tr class="table-warning">
+       <th>3</th>
+      <td>Chemistry</td>
+      <td>100</td>
+      <td>{{mysub3}}</td>
+    </tr>
+       <tr class="table-success">
+      <th>4</th>
+      <td>Physics</td>
+      <td>100</td>
+      <td>{{mysub4}}</td>
+    </tr>
+     <tr class="table-secondary">
+      <th>5</th>
+      <td>Computer</td>
+      <td>100</td>
+      <td>{{mysub5}}</td>
+    </tr>
+         <tr class="table-light">
+      <th></th>
+      <th> Total </th>
+      <th>500</th>
+      <td>{{myresult}}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+    </div>
+</body>
+</html>
