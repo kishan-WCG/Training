@@ -193,6 +193,25 @@ router.post('/mailer', function(req, res, next) {
 
 });
 
+router.get('/admin-login', function(req, res) {
 
+    res.render('admin-login')
+
+})
+
+router.post('/admin-panel', function(req, res) {
+
+
+    if (req.body.uname == "admin" && req.body.password == "admin") {
+        req.session.name = req.body.uname;
+        console.log(req.session.name)
+        res.render('SignIn')
+    }
+    // var my = req.body.uname;
+    // var password = req.body.password;
+    // req.session.name = my;
+    // console.log(req.session.name)
+    // res.render('index')
+});
 
 module.exports = router;
