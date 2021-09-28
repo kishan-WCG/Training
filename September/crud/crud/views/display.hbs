@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disply Data </title>
+</head>
+<body>
+   Total Record  Of {{userarray.length}}
+    <table border="2px">
+
+        <thead>
+            <th>Name </th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {{#each userarray}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{username}}</td>
+                <td>{{email}}</td>
+                <td>{{password}}</td>
+                <td><a href="edit/{{_id}}">Edit</a> </td>
+                    <td><a href="{{_id}}">Delete</a></td>
+                
+            </tr>
+            {{else}}
+                No Record Found
+                {{/each}}
+        </tbody>
+    </table>
+</body>
+</html>

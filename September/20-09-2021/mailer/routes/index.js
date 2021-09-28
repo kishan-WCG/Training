@@ -16,7 +16,7 @@ router.post('/mailer', function (req, res, next) {
   var name = req.body.text1
   var email = req.body.text2
   var pass = req.body.text3
-
+  var file = req.body.file
   var number = req.body.text5
   var male = req.body.text6
   var female = req.body.text7
@@ -37,7 +37,7 @@ router.post('/mailer', function (req, res, next) {
     let info = await transporter.sendMail({
       from: '"Fred Foo 👻" <foo@example.com>', // sender address
       to: email,  // list of receivers
-      subject: "Hello ✔", // Subject line
+      subject: "attachments With File ✔", // Subject line
       text: "Hello world?", // plain text body
       html: `
     
@@ -47,18 +47,23 @@ router.post('/mailer', function (req, res, next) {
         <th>Email</th>
         <th>password</th>
         <th>Mobile</th>
+     
       </tr>
       <tr>
         <td>${name}</td>
         <td>${email}</td>
         <td>${pass}</td>
         <td>${number}</td>
+    
       </tr>
      
     </table>
    `, // html body
+   attachments:[{
+    filename: file,
+   }]
     });
-
+    res.render('ans', {myname: name, myemail: email, mypass: pass,file:file, mynumber: number, mymale: male,myfemale:female})
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
@@ -66,7 +71,7 @@ router.post('/mailer', function (req, res, next) {
 
   main().catch(console.error);
 
-  res.render('ans', {myname: name, myemail: email, mypass: pass, mynumber: number, mymale: male,myfemale:female})
+  
 });
 
 
