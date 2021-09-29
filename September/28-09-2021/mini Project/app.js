@@ -7,8 +7,7 @@ var mongoose = require("mongoose");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var session = require('express-session');
-// var expressfileupload = require('express-fileupload');
-
+var expressfileupload = require('express-fileupload');
 
 var app = express();
 
@@ -39,6 +38,7 @@ app.use(session({
 // app.use(expressfileupload);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use(expressfileupload());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
