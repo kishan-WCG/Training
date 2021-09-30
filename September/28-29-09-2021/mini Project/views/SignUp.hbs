@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<head>
+    <title>SignUp</title>
+</head>
+<body>   
+     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">First name</label>
+                                    <input name="name" class="input--style-4" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input  name="email" class="input--style-4" type="email"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Date Of Birth</label>
+                                    <div class="input-group-icon">
+                                        <input name="dob" class="input--style-4 js-datepicker" type="date" />
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Gender</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Male
+                                            <input name="gender" type="radio"  value="male"/>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Female
+                                             <input name="gender" type="radio"  value="female"/>
+                                             <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Password</label>
+                                    <input name="password" class="input--style-4" type="Password" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Age</label>
+                                    <input name="age" class="input--style-4" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Address</label>
+                                    <input name="address" class="input--style-4" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">City </label>
+                                    <input name="city" class="input--style-4" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Skype</label>
+                                    <input name="skype" class="input--style-4" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Phone Number</label>
+                                    <input name="phone" class="input--style-4" type="text" />
+                                </div>
+                            </div>
+                            <div>
+                                <input type="file" name="photo"/>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button> <br> <br>
+                            <a href="/SignIn"> If You Have a Account . . ? </a>
+                        </div>
+                  
+                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
