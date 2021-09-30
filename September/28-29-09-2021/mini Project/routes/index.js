@@ -222,34 +222,12 @@ router.post('/admin-panel', function(req, res) {
 
     let uname = req.body.uname;
     let password = req.body.password;
-    console.log('user is a ' + uname);
-    console.log('uname is a ' + password);
-
-    admin.findOne({ uname: uname }).then((user) => {
-        console.log('database no uname' + user);
-        console.log('database no password' + password);
-        if (user == null) {
-            return res.json("Email Or Password Invalid ");
-        } else {
-            if (password == user.password)
-
-            {
-                req.session.user = unam;
-                console.log('session checker' + req.session.user);
-                res.redirect("/view-product");
-
-            } else {
-                console.log('user is a ' + user);
-                console.log('database no password is a ' + password);
-                // res.json("Email Oe Password Invalid dfggfdggdffffffffff")
-            }
-        }
-
-    }).catch((err) => {
-        console.log(err);
-    })
+    console.log(uname);
+    console.log(password);
 
 
+    admin.findOne({ uname: uname }).then((data) => { console.log(data); }).catch((err) => { throw err })
+    res.send("hi")
 
     // if (req.body.uname == "admin" && req.body.password == "admin") {
     //     req.session.name = req.body.uname;
