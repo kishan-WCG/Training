@@ -72,13 +72,24 @@
                             <p class="card-text">{{des}}</p>
                              
                                 <hr>
-                                <a href="#{{_id}}" class="btn btn-primary">Buy</a>
-                                <a href="#{{_id}}" class="btn btn-danger">Add to Cart</a>
+                                <a href="/buy{{_id}}" class="btn btn-primary">Buy</a>
+                                <a class="btn btn-danger" data-bs-toggle="offcanvas" href="cart" role="button" aria-controls="offcanvasExample">
+                                     Add to Cart
+                                                </a>
+                                {{!-- <a href="cart{{_id}}" class="btn btn-danger">Add to Cart</a> --}}
                             </div>
                         </div>
                        </div>
         {{/each}}
     </div>
 
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="cart" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Add To Cart</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+</div>
 </body>
 </html>

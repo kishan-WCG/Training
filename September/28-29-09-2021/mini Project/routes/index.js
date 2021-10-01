@@ -3,6 +3,8 @@ const signUp = require('../model/signUp');
 const product = require('../model/product');
 const admin = require('../model/admin');
 const { text } = require('express');
+const session = require('express-session');
+const nodemailer = require("nodemailer");
 
 var router = express.Router();
 
@@ -57,7 +59,6 @@ router.post('/SignUp', function(req, res, next) {
 router.get('/SignIn', function(req, res, next) {
     res.render('SignIn')
 });
-
 router.post('/SignIn', function(req, res, next) {
 
     let email = req.body.email;
@@ -71,7 +72,7 @@ router.post('/SignIn', function(req, res, next) {
             if (password == user.password) {
                 req.session.user = email;
                 console.log('session checker' + req.session.user);
-                res.redirect("/view-product");
+                res.redirect("/view-only-user");
 
             } else {
                 res.json("Email Oe Password Invalid")
@@ -172,32 +173,34 @@ router.get('/mailer', function(req, res, next) {
 
 router.post('/mailer', function(req, res, next) {
     console.log(req.body);
-    var foremail = req.body.foremail;
-    signUp.findOne({ email: foremail }).then((user) => {
+    var email = req.body.email;
+    signUp.findOne({ email: email }).then((user) => {
 
         "use strict";
-        const nodemailer = require("nodemailer");
+
         async function main() {
+            const nodemailer = require("nodemailer");
             let testAccount = await nodemailer.createTestAccount();
+
             let transporter = nodemailer.createTransport({
                 host: "smtp.gmail.com",
                 port: 587,
                 secure: false, // true for 465, false for other ports
                 auth: {
-                    user: "herrypottar21@gmail.com", // generated ethereal user
-                    pass: "herry123!@#", // generated ethereal password
+                    user: "replyfor123@gmail.com", // generated ethereal user
+                    pass: "Kishan123", // generated ethereal password
                 },
             });
 
             let info = await transporter.sendMail({
                 from: '"Fred Foo 👻" <foo@example.com>', // sender address
-                to: foremail, // list of receivers
+                to: email, // list of receivers
                 subject: "Forgot Password ✔", // Subject line
                 text: "Hello world?", // plain text body
                 html: ` <h3>Your Password Is :- </h3><h1>${user.password}</h1>`,
 
             });
-            res.render('ans', { myname: name, myemail: email, mypass: pass, file: file, mynumber: number, mymale: male, myfemale: female })
+            // res.render('ans', { myname: name, myemail: email, mypass: pass, file: file, mynumber: number, mymale: male, myfemale: female })
             console.log("Message sent: %s", info.messageId);
             console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
@@ -222,12 +225,27 @@ router.post('/admin-panel', function(req, res) {
 
     let uname = req.body.uname;
     let password = req.body.password;
-    console.log(uname);
-    console.log(password);
+    // console.log(uname);
+    // console.log(password);
 
+    admin.findOne({ uname: uname }).then((data) => {
+        console.log('database is ' + data);
 
-    admin.findOne({ uname: uname }).then((data) => { console.log(data); }).catch((err) => { throw err })
-    res.send("hi")
+        if (data == null) {
+            return res.json("Email Or Password is Null");
+        } else {
+            if (password == data.password) {
+                req.session.uname = data.uname;
+                console.log('session checker' + req.session.uname);
+                res.redirect("/admin-home");
+
+            } else {
+                res.json("Email Oe Password Invalid")
+            }
+        }
+
+    }).catch((err) => { throw err })
+
 
     // if (req.body.uname == "admin" && req.body.password == "admin") {
     //     req.session.name = req.body.uname;
@@ -240,18 +258,24 @@ router.post('/admin-panel', function(req, res) {
 });
 router.get('/admin-home', function(req, res) {
     // res.render('admin-home')
-    product.find(function(err, data) {
+    if (req.session.uname) {
+        product.find(function(err, data) {
 
-        if (err) {
-            console.log('Error During the View Product.....!')
-            console.log(err)
-        } else {
-            console.log('Fetching Data ' + data);
-            res.render("admin-home", { viewproduct: data })
+            if (err) {
+                console.log('Error During the View Product.....!')
+                console.log(err)
+            } else {
+                console.log('Fetching Data ' + data);
+                res.render("admin-home", { viewproduct: data })
 
-        }
+            }
 
-    }).lean();
+        }).lean();
+
+    } else {
+        res.redirect('/admin-panel')
+    }
+
 
 
 })
@@ -259,6 +283,18 @@ router.post('/admin-home', function(req, res) {
 
 
 
+})
+
+router.get('/admin-logout', function(req, res) {
+
+    req.session.destroy((error, data) => {
+        if (error) {
+            console.log('Errr in Logout')
+        } else {
+            console.log('Logout ..!' + data)
+            res.redirect('/view-product')
+        }
+    })
 })
 
 router.get('/view-product', function(req, res) {
@@ -281,7 +317,11 @@ router.get('/view-product', function(req, res) {
 
 
 router.get('/add-product', function(req, res, next) {
-    res.render("add-product")
+    if (req.session.uname) {
+        res.render("add-product")
+    } else {
+        res.redirect('/admin-panel')
+    }
 
 
 
@@ -376,6 +416,94 @@ router.post("/edit-product/:id", function(req, res) {
     })
 
 })
+router.get("/view-only-user", function(req, res) {
+    product.find(function(err, data) {
+
+        if (err) {
+            // console.log('Error During the View Product.....!')
+            console.log(err)
+        } else {
+            console.log('Fetching Data ' + data);
+            res.render("view-only-user", { viewproduct: data })
+        }
+
+    }).lean();
+
+});
+
+router.get("/buy:id", function(req, res) {
+    if (req.session.user) {
+
+        signUp.findOne({ email: req.session.user }).lean().then((user) => {
+            product.findById(req.params.id).lean().then((data) => {
+
+                console.log('product is a ........' + data.name);
+                res.render("buy", { user: user, viewproduct: data })
+                console.log('product is a ....111111111111....' + data.name);
+
+            })
+
+        }).catch((err) => {
+            console.log(err);
+        })
+    } else {
+        res.redirect('/SignIn')
+
+    }
+
+});
+
+
+
+router.get('/order', function(req, res, next) {
+    res.render('order')
+});
+
+router.post('/order', function(req, res, next) {
+    console.log(req.body);
+
+    signUp.findOne(email).then((user) => {
+        console.log(email);
+        "use strict";
+
+        async function main() {
+            let testAccount = await nodemailer.createTestAccount();
+            let transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 587,
+                secure: false, // true for 465, false for other ports
+                auth: {
+                    user: "herrypottar21@gmail.com", // generated ethereal user
+                    pass: "herry123!@#", // generated ethereal password
+                },
+            });
+
+            let info = await transporter.sendMail({
+                from: '"Fred Foo 👻" <foo@example.com>', // sender address
+                to: email, // list of receivers
+                subject: "Forgot Password ✔", // Subject line
+                text: "Hello world?", // plain text body
+                html: ` <h3>Your Password Is :- </h3><h1>${user.password}</h1>`,
+
+            });
+            // res.render('buy', { myname: name, myemail: email, mypass: pass, file: file, mynumber: number, mymale: male, myfemale: female })
+            console.log("Message sent: %s", info.messageId);
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        }
+
+        main().catch(console.error);
+
+    }).catch((err) => { console.log(err); })
+
+    res.render('error')
+
+});
+
+router.get('/order', function(req, res, next) {
+    res.render('order')
+});
+
 
 
 module.exports = router;
