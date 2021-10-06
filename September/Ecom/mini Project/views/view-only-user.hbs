@@ -76,25 +76,30 @@
                 <a href="/" class="nav-link m-2 menu-item ">Home</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link m-2 menu-item">About</a>
+                <a href="/home" class="nav-link m-2 menu-item">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="/view-cart" class="nav-link m-2 menu-item">Add To Cart</a>
+            </li>
+            
+             <li class="nav-item">
+                <a href="logout" class="nav-link m-2 menu-item">Logout</a>
+            </li>
+              <li class="nav-item">
+                <a href="/view-only-user" class="nav-link m-2 menu-item">View All Product</a>
             </li>
            
             <div class="dropdown">
   <button class="dropbtn">Dropdown</button>
   <div class="dropdown-content">
-    <a href="mobile">Mobile</a>
-    <a href="leptop">Leptop</a>
-    <a href="watch">Watch</a>
-  </div>
+    {{#each categories}}
+       <a href="/category/{{category_name}}">{{category_name}}</a>
+    {{/each}}
+   
 </div>
             
             
-            <li class="nav-item">
-                <a href="logout" class="nav-link m-2 menu-item">Logout</a>
-            </li>
-              <li class="nav-item">
-                <a href="admin-panel" class="nav-link m-2 menu-item">Admin</a>
-            </li>
+           
 
           
         
@@ -114,12 +119,13 @@
                             <div class="card-body">
                              <h5 class="card-title">{{name}}</h5>
                             <p class="card-text"> ₹ {{price}}</p>
-                            <p class="card-text">{{cate}}</p>
+                            <p class="card-text">{{cate.category_name}}</p>
                             <p class="card-text">{{des}}</p>
                              
                                 <hr>
-                                <a href="/buy{{_id}}" class="btn btn-primary">Buy</a>
-                                <a  href="cart" class="btn btn-danger" data-bs-toggle="offcanvas" role="button" data-bs-target="#offcanvasRight"  aria-controls="offcanvasRight">Add to Cart</a>
+                                <a href="/buy/{{_id}}" class="btn btn-primary">Buy</a>
+                                <a href="/add-cart/{{_id}}" class="btn btn-danger">Add To Cart</a>
+                                {{!-- <a  href="/add-cart" class="btn btn-danger" data-bs-toggle="offcanvas" role="button" data-bs-target="#offcanvasRight"  aria-controls="offcanvasRight">Add to Cart</a> --}}
                                 
 
 
@@ -148,13 +154,9 @@
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
- 
 
-{{!--  --}}
-
- 
-{{!--  --}}
 
 </div>
 </body>
+
 </html>

@@ -82,11 +82,23 @@
           <div class="sb-sidenav-menu">
             <div class="nav">
               <div class="sb-sidenav-menu-heading">Core</div>
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="admin-home">
                 <div class="sb-nav-link-icon"><i
                     class="fas fa-tachometer-alt"
                   ></i></div>
                 Dashboard
+              </a>
+            <a class="nav-link" href="add-product">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Add Product
+              </a>
+               <a class="nav-link" href="view-all-user">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                View all User
+              </a>
+                 <a class="nav-link" href="add-cate">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Add Categories
               </a>
               
             </div>
@@ -113,8 +125,13 @@
     <input type="text" name="price" class="form-control" id="exampleInputEmail1">
   </div>
   <div class="mb-3">
-     <label for="exampleInputEmail1" class="form-label">Enter Your Product Categoe</label>
-    <input type="text" name="cate" class="form-control" id="exampleInputEmail1">
+     <select class="form-select" aria-label="Default select example" name="cate">
+ 
+     {{#each categories}}
+          <option value={{_id}}>{{category_name}}</option>
+     {{/each}}
+  
+</select>
   </div>
    <div class="mb-3">
      <label for="exampleInputEmail1" class="form-label">Enter Your Product Description</label>

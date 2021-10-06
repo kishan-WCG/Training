@@ -31,7 +31,7 @@ mongoose
 app.use(session({
     secret: 'keyboard cat',
     cookie: {
-        maxAge: 6000000000
+        maxAge: 65 * 24 * 60 * 60 * 1000
     }
 }))
 app.use(expressfileupload());

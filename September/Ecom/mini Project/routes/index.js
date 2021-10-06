@@ -5,6 +5,9 @@ const admin = require('../model/admin');
 const { text } = require('express');
 const session = require('express-session');
 const nodemailer = require("nodemailer");
+const category = require('../model/category');
+const order = require('../model/order');
+const { BandwidthLimitExceeded } = require('http-errors');
 // const nodemailer = require("nodemailer");
 
 var router = express.Router();
@@ -37,7 +40,8 @@ router.post('/SignUp', function(req, res, next) {
         city: req.body.city,
         age: req.body.age,
         phone: req.body.phone,
-        skype: req.body.skype
+        skype: req.body.skype,
+        photo: fileobj.name
 
 
     }
@@ -45,15 +49,28 @@ router.post('/SignUp', function(req, res, next) {
     console.log(bodydata)
     var data = new signUp(bodydata)
 
-    data.save((err) => {
-        if (err) {
-            console.log(err)
-            console.log('Error in Inset Record ')
-        } else {
-            console.log(' Record Added..!')
-            res.redirect('/SignIn')
-        }
-    })
+    order.create({ user_ref: req.session.uid, products_ref: [] }).then(() => {
+        data.save((err) => {
+            if (err) {
+                console.log(err)
+                console.log('Error in Inset Record ')
+            } else {
+                console.log(' Record Added..!')
+                res.redirect('/SignIn')
+            }
+        })
+
+    }).catch(err => next(err))
+
+    // data.save((err) => {
+    //     if (err) {
+    //         console.log(err)
+    //         console.log('Error in Inset Record ')
+    //     } else {
+    //         console.log(' Record Added..!')
+    //         res.redirect('/SignIn')
+    //     }
+    // })
 
 
 });
@@ -72,8 +89,14 @@ router.post('/SignIn', function(req, res, next) {
         } else {
             if (password == user.password) {
                 req.session.user = email;
+                req.session.uid = user._id;
+
+                order.create({ user_ref: user._id, products_ref: [] }).then(() => {
+                    res.redirect("/view-only-user");
+                }).catch(err => next(err))
+
                 // console.log('session checker' + req.session.user);
-                res.redirect("/view-only-user");
+
 
             } else {
                 res.json("Email Oe Password Invalid")
@@ -91,13 +114,6 @@ router.post('/SignIn', function(req, res, next) {
 });
 
 router.get('/home', function(req, res, next) {
-    console.log(req.session.user)
-    signUp.find().lean().then((data) => {
-
-        res.render('home', { user: data });
-    }).catch((err) => {
-        throw err;
-    });
     if (req.session.user) {
 
         signUp.findOne({ email: req.session.user }).lean().then((user) => {
@@ -111,6 +127,10 @@ router.get('/home', function(req, res, next) {
 
     }
 });
+
+router.post('/home', function(req, res) {
+
+})
 
 router.get('/logout', function(req, res) {
 
@@ -302,20 +322,13 @@ router.post('/admin-panel', function(req, res) {
 router.get('/admin-home', function(req, res) {
     // res.render('admin-home')
     if (req.session.uname) {
-        product.find(function(err, data) {
-
-            if (err) {
-                // console.log('Error During the View Product.....!')
-                console.log(err)
-            } else {
-                console.log('Fetching Data ' + data);
-                res.render("admin-home", { viewproduct: data })
-
-            }
-
-        }).lean();
-
+        product.find().populate("cate").lean().then((data) => {
+            res.render("admin-home", { viewproduct: data })
+        }).catch((err) => {
+            next(err)
+        })
     } else {
+
         res.redirect('/admin-panel')
     }
 
@@ -358,11 +371,31 @@ router.get('/view-product', function(req, res) {
 
 });
 
+router.get('/add-cate', function(req, res) {
+    res.render('add-cate')
+
+});
+
+router.post('/add-cate', function(req, res) {
+    let category_name = req.body.category
+    category.create({ category_name }).then(() => {
+        res.redirect("/add-cate")
+    }).catch((err) => {
+        next(err)
+    })
+
+});
+
 
 router.get('/add-product', function(req, res, next) {
     console.log('this is a add-product session      ' + req.session.uname)
     if (req.session.uname) {
-        res.render("add-product")
+        category.find().lean().then((categories) => {
+            res.render("add-product", { categories })
+        }).catch((err) => {
+            console.log(err);
+        })
+
     } else {
         res.redirect('/admin-panel')
     }
@@ -370,6 +403,8 @@ router.get('/add-product', function(req, res, next) {
 
 
 });
+
+
 
 router.post('/add-product', function(req, res, next) {
 
@@ -464,15 +499,23 @@ router.get("/view-only-user", function(req, res) {
     if (req.session.user) {
         product.find(function(err, data) {
 
+
+
             if (err) {
                 // console.log('Error During the View Product.....!')
                 console.log(err)
             } else {
+
                 console.log('Fetching Data ' + data);
-                res.render("view-only-user", { viewproduct: data })
+                category.find().lean().then((categories) => {
+                    res.render("view-only-user", { viewproduct: data, categories })
+                }).catch((err) => {
+                    next(err)
+                })
+
             }
 
-        }).lean();
+        }).populate("cate").lean();
 
     } else {
         res.redirect('/SignIn')
@@ -480,7 +523,7 @@ router.get("/view-only-user", function(req, res) {
 
 });
 
-router.get("/buy:id", function(req, res) {
+router.get("/buy/:id", function(req, res) {
     console.log('buy sesion is a the ' + req.session.user);
     if (req.session.user) {
 
@@ -630,66 +673,108 @@ router.post('/order', function(req, res, next) {
     res.redirect('/')
 
 });
-router.get('/mobile', function(req, res) {
 
-    if (req.session.user) {
-        product.find({ cate: "mobile" }).then((data) => {
-            res.render("view-only-user", { viewproduct: data })
 
-        }).catch((err) => {
-            console.log(err)
-        })
-        5
-    } else {
-        res.redirect('/SignIn')
-    }
+
+router.get('/category/:category_name', function(req, res, next) {
+
+    category.find().lean().then((categories) => {
+        category.findOne({ category_name: req.params.category_name }).then((category) => {
+            product.find({ cate: category._id }).lean().then((data) => {
+                res.render("view-only-user", { viewproduct: data, categories })
+            }).catch(err => next(err))
+        }).catch(err => next(err))
+    }).catch(err => next(err))
 
 
 })
-router.post('/mobile', function(req, res) {
 
-    // signUp.find().then(data =>{
-    //     console.log('data for mobile'+data);
-    //     console.log('data for prooer'+data.cate);
-    //     console.log('data for Only Category'+cate);
-    // }).catch()
+router.get('/view-all-user', function(req, res) {
+
+
+    signUp.find().lean().then((data) => {
+        // console.log(data);
+        res.render('view-all-user', { data })
+            // console.log(data);
+    }).catch(() => {
+        console.log('error')
+    })
+
+
+
 
 });
 
-router.get('/leptop', function(req, res) {
-
-    if (req.session.user) {
-        product.find({ cate: "leptop" }).then((data) => {
-            res.render("view-only-user", { viewproduct: data })
-
-
-        }).catch((err) => {
-            console.log(err)
-        })
-        5
-    } else {
-        res.redirect('/SignIn')
-    }
-
-
+router.get("/deleteuser/:id", (req, res, next) => {
+    let userid = req.params.id;
+    signUp.findByIdAndDelete(userid).then(() => {
+        res.redirect("/view-all-user")
+    }).catch((err) => {
+        next(err)
+    })
 })
 
-router.get('/watch', function(req, res) {
+router.get('/view-cart', function(req, res) {
+    console.log('This is a Add-cart Sessiom Checker ' + req.session.uid);
+    order.findOne({ user_ref: req.session.uid }).populate("products_ref").lean().then((products) => {
+        // console.log("Products ==> " + products);
+        // console.log('PHOTOSSSS' + products.products_ref[0].photo);
+        const qmap = new Map()
+        for (let i = 0; i < products.products_ref.length; i++) {
+            if (qmap.has(products.products_ref[i]._id)) {
+                qmap.set(products.products_ref[i]._id, qmap.get(products.products_ref[i]._id) + 1);
+            } else {
+                qmap.set(products.products_ref[i]._id, 1);
 
-    if (req.session.user) {
-        product.find({ cate: "watch" }).then((data) => {
-            res.render("view-only-user", { viewproduct: data })
+            }
+        }
+        console.log(qmap);
+        let amount = 0;
+        for (let i = 0; i < products.products_ref.length; i++) {
+            amount += Number(products.products_ref[i].price);
+        }
 
+        res.render("add-cart", { products_data: products.products_ref, amount: amount });
+    })
+
+});
+router.get('/add-cart/:id', function(req, res) {
+    console.log('This is a Add-cart Sessiom Checker ' + req.session.uid);
+
+
+    order.findOne({ user_ref: req.session.uid }).then((order_data) => {
+        console.log('this is a ORDER DATA FOR REFRANCE' + order_data);
+        // console.log(typeof order_data.products_ref);
+        // console.log(req);
+        let temp_arr = order_data.products_ref
+        temp_arr.push(req.params.id);
+
+
+        order.findOneAndUpdate({ user_ref: req.session.uid }, { products_ref: temp_arr })
+
+        .then((data) => {
+            console.log("cart" + data);
+            res.redirect("/view-only-user");
         }).catch((err) => {
-            console.log(err)
-        })
-        5
-    } else {
-        res.redirect('/SignIn')
-    }
+            throw err;
+        });
 
+    }).catch((err) => {
+        throw err;
+    });
 
-})
+});
+
+router.get('/user/delete-cart/:id', function(req, res) {
+
+    let p_id = req.params.id;
+    order.updateOne({ user_ref: req.session.uid }, { $pullAll: { products_ref: [p_id] } }).then(() => {
+        res.redirect("/view-cart");
+    }).catch((err) => {
+        console.log(err);
+    })
+});
+
 
 
 module.exports = router;

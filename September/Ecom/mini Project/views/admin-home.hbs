@@ -75,7 +75,7 @@
           <div class="sb-sidenav-menu">
             <div class="nav">
               <div class="sb-sidenav-menu-heading">Core</div>
-              <a class="nav-link" href="/admin/admindashbord">
+              <a class="nav-link" href="#">
                 <div class="sb-nav-link-icon"><i
                     class="fas fa-tachometer-alt"
                   ></i></div>
@@ -84,6 +84,14 @@
               <a class="nav-link" href="add-product">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Add Product
+              </a>
+               <a class="nav-link" href="view-all-user">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                View all User
+              </a>
+                 <a class="nav-link" href="add-cate">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Add Categories
               </a>
             </div>
           </div>
@@ -99,7 +107,7 @@
 
 
 <div class="container" style="padding: 50px 50px 50px 50px;">
-  <h1>View All Product :</h1>
+  <h1 class="text-center my-3">View All Product :</h1>
 <div class="row row-cols-3">
             {{#each viewproduct}}
                 <div class="col mt-3">
@@ -108,7 +116,7 @@
                             <div class="card-body">
                              <h5 class="card-title">{{name}}</h5>
                             <p class="card-text">{{price}}</p>
-                            <p class="card-text">{{cate}}</p>
+                            <p class="card-text">{{cate.category_name}}</p>
                             <p class="card-text">{{des}}</p>
                              
                                 <hr>
@@ -119,15 +127,7 @@
                        </div>
         {{/each}}
     </div>
-
-
-
-
-
-
-
-
-        <footer class="py-4 bg-light mt-auto">
+           <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">
             <div
               class="d-flex align-items-center justify-content-between small"
