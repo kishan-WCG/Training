@@ -1,0 +1,54 @@
+{{>header}}
+
+{{>sidebar}}
+<style>
+    #products{
+        margin-top: 100px;
+        width: 70%;
+        margin-left: 250px;
+    }
+</style>
+
+<div>
+
+   <table id="products" class="table table-bordered table-striped text-center">
+     
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Sub Category Name</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each display}}
+                                    <tr>
+                                        <td>{{@index}}</td>
+                                        <td>{{subcategoryname}}</td>
+                                       
+
+                                        <th class="text-center"><a href="/admin/subcategory/edit/{{_id}}"
+                                                class="btn btn-primary ">Edit</a></th>
+                                        <th class="text-center"><a href="/admin/subcategory/delete/{{_id}}"
+                                                class="btn btn-danger">Delete</a></th>
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Sub Category Name</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+
+</div>
+
+
+
+{{>footer}}

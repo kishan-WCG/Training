@@ -1,0 +1,60 @@
+{{>header}}
+
+{{>sidebar}}
+<style>
+    #products{
+        margin-top: 100px;
+        width: 70%;
+        margin-left: 250px;
+    }
+</style>
+
+<div>
+
+   <table id="products" class="table table-bordered table-striped text-center">
+     
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Product Name</th>
+                                        <th>Product Details</th>
+                                        <th>Product Price</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each product}}
+                                    <tr>
+                                        <td>{{@index}}</td>
+                                        <td>{{productname}}</td>
+                                        <td>{{productdetails}}</td>
+                                        <td>{{productprice}}</td>
+           
+
+                                        <th class="text-center"><a href="/admin/product/edit/{{_id}}"
+                                                class="btn btn-primary ">Edit</a></th>
+                                        <th class="text-center"><a href="/admin/product/delete/{{_id}}"
+                                                class="btn btn-danger">Delete</a></th>
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Product Name</th>
+                                        <th>Product Details</th>
+                                        <th>Product Price</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+
+</div>
+
+
+
+{{>footer}}

@@ -1,0 +1,1 @@
+module.exports = (req, res, next) => req.session.uid ? next() : res.redirect('/admin/login');
