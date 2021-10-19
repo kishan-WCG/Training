@@ -1,0 +1,66 @@
+{{>header}}
+
+{{>sidebar}}
+
+<style>
+    #products {
+        margin-top: 100px;
+        width: 70%;
+        margin-left: 250px;
+    }
+</style>
+
+<div>
+
+    <table id="products" class="table table-bordered table-striped text-center">
+
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>email</th>
+                <th>password</th>
+                <th>adddress</th>
+                <th>photo</th>
+                <th>area</th>
+                <th>Action</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {{#each user}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{password}}</td>
+                <td>{{address}}</td>
+                <td><img height="100" width="100" src="/admin/images/{{photo}}"/></td>
+                <td>{{_area.areaname}}</td>
+                <th class="text-center"><a href="/admin/user/edit/{{_id}}" class="btn btn-primary ">Edit</a>
+                <a href="/admin/user/delete/{{_id}}" class="btn btn-danger">Delete</a></th>
+            </tr>
+            {{/each}}
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>email</th>
+                <th>password</th>
+                <th>address</th>
+                <th>photo</th>
+                <th>area</th>
+                <th>Action</th>
+               
+            </tr>
+        </tfoot>
+    </table>
+
+
+</div>
+
+
+
+{{>footer}}                                                                                                               

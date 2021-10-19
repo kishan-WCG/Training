@@ -3,10 +3,11 @@ const category = require('./category');
 
 const adminSchema = mongoose.Schema({
     subcategoryname: String,
-    _category :{
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'category'
+    _category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category'
     }
+
 
 })
 

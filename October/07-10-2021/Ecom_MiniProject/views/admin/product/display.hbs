@@ -19,8 +19,11 @@
                                         <th>Product Name</th>
                                         <th>Product Details</th>
                                         <th>Product Price</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>Sub Category</th>
+                                        {{!-- <th>Category</th> --}}
+                                        <th>Photo</th>
+                                        <th>Action</th>
+               
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,11 +33,14 @@
                                         <td>{{productname}}</td>
                                         <td>{{productdetails}}</td>
                                         <td>{{productprice}}</td>
+                                        <td>{{_subcategory.subcategoryname}}</td>
+                                        <td><img height="100" width="100" src="/admin/images/{{img}}"/></td>
+                                        {{!-- <td>{{_subcategory._category.categoryname}}</td> --}}
            
 
                                         <th class="text-center"><a href="/admin/product/edit/{{_id}}"
-                                                class="btn btn-primary ">Edit</a></th>
-                                        <th class="text-center"><a href="/admin/product/delete/{{_id}}"
+                                                class="btn btn-primary ">Edit</a>
+                                       <a href="/admin/product/delete/{{_id}}"
                                                 class="btn btn-danger">Delete</a></th>
                                     </tr>
                                     {{/each}}
@@ -46,8 +52,11 @@
                                         <th>Product Name</th>
                                         <th>Product Details</th>
                                         <th>Product Price</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>Sub Category</th>
+                                        {{!-- <th>Category</th> --}}
+                                        <th>Photo</th>
+                                        <th>Action</th>
+                                        
                                     </tr>
                                 </tfoot>
                             </table>

@@ -1,0 +1,50 @@
+{{>header}}
+{{>sidebar}}
+
+<div class="wrapper">
+
+    <div class="register-box my-5  " style="margin: auto;">
+        <div class="register-logo">
+            <a href="#"><b>Add  Area</b></a>
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <form method="post">
+                    <div class="input-group mb-3">
+                        <input type="text" name="areaname" class="form-control"
+                            placeholder="Enter State Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                           <select id="inputStatus" class="form-control custom-select" name="_city">
+                                <option selected disabled>Select one</option>
+                                {{#each cityp }}
+
+                                <option value="{{_id}}">{{cityname}}</option>
+
+                                {{/each}}
+
+                            </select>
+                
+                    <div class="row">
+                        <div class="col-8">
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+
+
+    {{>footer}}

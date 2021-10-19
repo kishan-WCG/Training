@@ -1,50 +1,47 @@
 const admin = require('../../model/admin');
 
 module.exports.getchangepassword = function(req, res, next) {
-    res.render("admin/changepassword", { layout: "demo1.hbs" });
+    res.render("admin/changepassword");
 }
 
 module.exports.postchangepassword = function(req, res, next) {
 
-    if (req.session.uid) {
 
-        let oldpass = req.body.password;
-        admin.findOne({ _id: req.session.uid })
-            .then((data) => {
-                // console.log(data);
-                if (oldpass != data.password) {
-                    let msg1 = "Enter Your Old Password";
-                    res.render("signUp", { msg1: msg1 });
+    let oldpass = req.body.password;
+    admin.findOne({ email: req.session.uid })
+        .then((data) => {
+            console.log(data);
+            if (oldpass != data.password) {
+                let msg1 = "Enter Your Old Password";
+                res.render("admin", { msg1: msg1 });
+            } else {
+                let newpass = req.body.newpassword;
+                if (oldpass == newpass) {
+                    let msg2 = "It's your current password please set new password";
+                    res.render("admin", { msg2: msg2 });
                 } else {
-                    let newpass = req.body.newpass;
-                    if (oldpass == newpass) {
-                        let msg2 = "It's your current password please set new password";
-                        res.render("signUp", { msg2: msg2 });
+                    let newpass = req.body.newpassword;
+                    console.log(newpass)
+                    let repass = req.body.repassword;
+                    if (newpass == repass) {
+                        data.password = newpass;
+                        data
+                            .save()
+                            .then(() => {
+                                return res.redirect("/admin/dashboard");
+                            })
+                            .catch((err) => {
+                                throw err;
+                            });
                     } else {
-
-                        // console.log(newpass)
-                        let repass = req.body.repassword;
-                        if (newpass == repass) {
-
-                            admin.findByIdAndUpdate(req.session.uid, { password: newpass })
-                                .then(() => {
-                                    return res.redirect("/admin/dashboard");
-                                })
-                                .catch((err) => {
-                                    throw err;
-                                });
-                        } else {
-                            let msg3 = "Password not match";
-                            res.render("admin/dashboard", { msg3: msg3 });
-                        }
+                        let msg3 = "Password not match";
+                        res.render("admin/dashboard", { msg3: msg3 });
                     }
                 }
-            })
-            .catch((err) => {
-                throw err;
-            });
-    } else {
-        res.render('admin/login')
-    }
+            }
+        })
+        .catch((err) => {
+            throw err;
+        });
 
 }

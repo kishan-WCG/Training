@@ -20,7 +20,24 @@ const { getdisplaysubcategory } = require('../controller/subcategory/display');
 const { geteditsubcategory, posteditsubcategory } = require('../controller/subcategory/edit');
 const { getdeletesubcategory, postdeletesubcategory } = require('../controller/subcategory/delete');
 const islogin = require('../controller/middlewere/islogin')
-
+const { getstate, poststate } = require('../controller/state/add');
+const { getdeletestate, postdeletestate } = require('../controller/state/delete');
+const { getdisplaystate, postdisplaystate } = require('../controller/state/display');
+const { geteditstate, posteditstate } = require('../controller/state/edit');
+const { getcity, postcity } = require('../controller/city/add');
+const { getdeletecity, } = require('../controller/city/delete');
+const { getdisplaycity, postdisplaycity } = require('../controller/city/display');
+const { geteditcity, posteditcity } = require('../controller/city/edit');
+// Area
+const { getarea, postarea } = require('../controller/area/add');
+const { getdeletearea, } = require('../controller/area/delete');
+const { getdisplayarea, postdisplayarea } = require('../controller/area/display');
+const { geteditarea, posteditarea } = require('../controller/area/edit');
+//USER
+const { getuser, postuser } = require('../controller/user/add');
+const { getdeleteuser, } = require('../controller/user/delete');
+const { getdisplayuser, postdisplayuser } = require('../controller/user/display');
+const { getedituser, postedituser } = require('../controller/user/edit');
 
 
 router.get('/dashboard', function(req, res, next) {
@@ -81,11 +98,70 @@ router.post('/subcategory/edit/:id', islogin, posteditsubcategory);
 router.get('/subcategory/delete/:id', islogin, getdeletesubcategory);
 router.post('/subcategory/delete/:id', islogin, postdeletesubcategory);
 
+router.get('/state/add', getstate);
+router.post('/state/add', poststate);
+
+router.get('/state/delete/:id', getdeletestate);
+router.post('/state/delete/:id', postdeletestate);
+
+router.get('/state/display', getdisplaystate);
+router.post('/state/display', postdisplaystate);
+
+router.get('/state/edit/:id', geteditstate);
+router.post('/state/edit/:id', posteditstate);
+
+router.get('/city/add', getcity);
+router.post('/city/add', postcity);
+
+router.get('/city/display', getdisplaycity);
+router.post('/city/display', postdisplaycity);
+
+router.get('/city/delete/:id', getdeletecity);
+
+
+router.get('/city/edit/:id', geteditcity);
+router.post('/city/edit/:id', posteditcity);
+
+//Area
+router.get('/area/add', getarea);
+router.post('/area/add', postarea);
+
+router.get('/area/display', getdisplayarea);
+router.post('/area/display', postdisplayarea);
+
+router.get('/area/delete/:id', getdeletearea);
+
+
+router.get('/area/edit/:id', geteditarea);
+router.post('/area/edit/:id', posteditarea);
+
+router.get('/user/add', getuser);
+router.post('/user/add', postuser);
+
+router.get('/user/display', getdisplayuser);
+router.post('/user/display', postdisplayuser);
+
+router.get('/user/delete/:id', getdeleteuser);
+
+
+router.get('/user/edit/:id', getedituser);
+router.post('/user/edit/:id', postedituser);
 
 
 
 
-
+// router.get('/city/add', getcity);
+// router.post('/city/add', postcity);
+// 
+// router.get('/city/display', getdisplaycity);
+// router.post('/city/display', postdisplaycity);
+// 
+// router.get('/city/delete/:id', getdeletecity);
+// 
+// 
+// router.get('/city/edit/:id', geteditcity);
+// router.post('/city/edit/:id', posteditcity);
+// 
 
 // router.get('/subcategory/display', getdissubcategory);
 // router.post('/subcategory/display', postdissubcategory);

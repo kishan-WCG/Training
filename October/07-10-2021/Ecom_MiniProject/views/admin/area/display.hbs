@@ -1,0 +1,56 @@
+{{>header}}
+
+{{>sidebar}}
+
+<style>
+    #products {
+        margin-top: 100px;
+        width: 70%;
+        margin-left: 250px;
+    }
+</style>
+
+<div>
+
+    <table id="products" class="table table-bordered table-striped text-center">
+
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Area Name</th>
+                <th>city Name</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each citya}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{areaname}}</td>
+                <td>{{_city.cityname}}</td>
+
+
+                <th class="text-center"><a href="/admin/area/edit/{{_id}}" class="btn btn-primary ">Edit</a>
+                <a href="/admin/area/delete/{{_id}}" class="btn btn-danger">Delete</a></th>
+            </tr>
+            {{/each}}
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Index</th>
+                <th>Area Name</th>
+                <th>City Name</th>
+                <th>Action</th>
+
+            </tr>
+        </tfoot>
+    </table>
+
+
+</div>
+
+
+
+{{>footer}}

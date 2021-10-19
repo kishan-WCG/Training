@@ -7,7 +7,7 @@ module.exports.getaddproduct = function(req, res, next) {
 
     subcategory.find().lean().then((data) => {
 
-        console.log(data);
+        console.log(' This is a SubCategory GETADDPRODUCT' + data);
 
         res.render('admin/product/add', { subcategory: data });
 
@@ -26,9 +26,8 @@ module.exports.postaddproduct = function(req, res, next) {
         productname: req.body.productname,
         productdetails: req.body.productdetails,
         productprice: req.body.productprice,
-
+        _subcategory: req.body._subcategory,
         img: req.files.img.name
-
 
 
     }

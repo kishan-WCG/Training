@@ -7,12 +7,12 @@ module.exports.getcategory = function(req, res, next) {
 
 module.exports.postcategory = function(req, res, next) {
 
-          
+
     var item = {
         categoryname: req.body.categoryname,
-        
+
     };
- 
+
 
     let data = category(item);
     data.save((error) => {
@@ -26,6 +26,6 @@ module.exports.postcategory = function(req, res, next) {
         }
     })
 
-  
+
 
 }

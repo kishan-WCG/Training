@@ -17,8 +17,8 @@
                                     <tr>
                                         <th>Index</th>
                                         <th>Sub Category Name</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>Action</th>
+                                   
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -28,10 +28,13 @@
                                         <td>{{subcategoryname}}</td>
                                        
 
-                                        <th class="text-center"><a href="/admin/subcategory/edit/{{_id}}"
-                                                class="btn btn-primary ">Edit</a></th>
-                                        <th class="text-center"><a href="/admin/subcategory/delete/{{_id}}"
-                                                class="btn btn-danger">Delete</a></th>
+                                        <th class="text-center">
+                                            <a href="/admin/subcategory/edit/{{_id}}"
+                                                class="btn btn-primary ">Edit</a>
+
+                                        <a href="/admin/subcategory/delete/{{_id}}"
+                                                class="btn btn-danger">Delete</a>
+                                                </th>
                                     </tr>
                                     {{/each}}
 
@@ -40,8 +43,8 @@
                                     <tr>
                                         <th>Index</th>
                                         <th>Sub Category Name</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th>Action</th>
+                                  
                                     </tr>
                                 </tfoot>
                             </table>

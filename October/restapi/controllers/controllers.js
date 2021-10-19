@@ -1,4 +1,3 @@
-const { rawListeners } = require('../app.js');
 const User = require('../model/user.model.js');
 
 
@@ -24,7 +23,8 @@ exports.create = (req, res) => {
     // Create a new User
     const user = new User({
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password
     });
     console.log(user.name);
     // Save user in the database
@@ -72,7 +72,8 @@ exports.update = (req, res) => {
     // Find user and update it with the request body
     User.findByIdAndUpdate(req.params.id, {
             name: req.body.name,
-            email: req.body.email
+            email: req.body.email,
+            password: req.body.password
         }, { new: true })
         .then(user => {
             if (!user) {
@@ -113,3 +114,25 @@ exports.delete = (req, res) => {
             });
         });
 };
+// User Login
+
+User.find().lean().then((data) => {
+
+    console.log(data);
+
+    if (data == null) {
+        return res.json('Email or Password Invalid...')
+    } else {
+
+        if (data.password) {
+            console.log(data);
+            res.redirect('/user')
+
+        } else {
+
+        }
+    }
+
+}).catch((error) => {
+    throw error
+})

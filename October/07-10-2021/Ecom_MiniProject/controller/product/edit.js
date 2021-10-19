@@ -1,7 +1,7 @@
 const product = require("../../model/product")
 
 module.exports.geteditproduct = function(req, res, next) {
-    // console.log('this is a edit id' + req.params.id);
+    console.log('this is a edit id' + req.params.id);
     product.findById(req.params.id).lean().then((data) => {
         res.render('admin/product/edit', { editdata: data })
     }).catch((err) => {
@@ -23,7 +23,6 @@ module.exports.postditproduct = function(req, res, next) {
     }).catch(() => {
         console.log("err");
     })
-
 
 
 }

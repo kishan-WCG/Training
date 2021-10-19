@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3093;
 
 http.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
+
 });
 
 app.use(express.static(__dirname + "/public"));
@@ -18,6 +19,10 @@ io.on("connection", function(socket) {
     socket.on("message", (msg) => {
         socket.broadcast.emit("message", msg);
     });
+
+    // console.log('New Ws Connection.........');
+
+    // socket.emit('Message', 'WelCome To chatApp');
 });
 
 app.get("/", (req, res) => {

@@ -10,6 +10,8 @@ var expressfileupload = require('express-fileupload');
 //routes
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+// var nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 
 var app = express();
 
@@ -26,6 +28,7 @@ app.engine(
         partialsDir: __dirname + "/views/admin/partials/",
     })
 );
+
 app.use(expressfileupload());
 app.use(logger("dev"));
 app.use(express.json());

@@ -14,12 +14,12 @@ module.exports.posteditsubcategory = function(req, res, next) {
 
 
     var bodyproduct = {
-        subcategory: req.body.subcategory
+        subcategoryname: req.body.subcategoryname
 
     }
 
     let id = req.params.id;
-    product.findByIdAndUpdate(id, bodyproduct).then(() => {
+    subcategory.findByIdAndUpdate(id, bodyproduct).then(() => {
         res.redirect("/admin/subcategory/display");
     }).catch(() => {
         console.log("err");

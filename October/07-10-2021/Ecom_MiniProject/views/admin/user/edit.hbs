@@ -1,0 +1,77 @@
+{{>header}}
+{{>sidebar}}
+
+<div class="wrapper">
+
+    <div class="register-box my-5  " style="margin: auto;">
+        <div class="register-logo">
+            <a href="index.html"><b>User Details</b></a>
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        <input type="text" name="name" value="{{dbdata.name}}" class="form-control"
+                            placeholder="Enter User Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="input-group mb-3">
+                        <input type="text" name="email" value="{{dbdata.email}}" class="form-control"
+                            placeholder="Enter User E-mail">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="input-group mb-3">
+                        <input type="text" name="password" value="{{dbdata.password}}" class="form-control"
+                            placeholder="Enter User Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="input-group mb-3">
+                        <input type="text" name="address" value="{{dbdata.address}}" class="form-control"
+                            placeholder="Enter User Address">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="input-group mb-3">
+                        <input type="file" name="photo" value="{{dbdata.name}}" class="form-control"
+                            placeholder="Enter State Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                      
+                    <div class="row">
+                        <div class="col-8">
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+
+
+    {{>footer}}
