@@ -93,7 +93,9 @@ exports.update = (req, res) => {
             });
         });
 };
+
 // Delete a User with the specified id in the request
+
 exports.delete = (req, res) => {
     User.findByIdAndRemove(req.params.id)
         .then(user => {
@@ -114,25 +116,3 @@ exports.delete = (req, res) => {
             });
         });
 };
-// User Login
-
-User.find().lean().then((data) => {
-
-    console.log(data);
-
-    if (data == null) {
-        return res.json('Email or Password Invalid...')
-    } else {
-
-        if (data.password) {
-            console.log(data);
-            res.redirect('/user')
-
-        } else {
-
-        }
-    }
-
-}).catch((error) => {
-    throw error
-})

@@ -6,7 +6,7 @@ const { check, validationResult } = require('express-validator');
 router.get('/', function(req, res, next) {
     res.render('index')
 });
-
+// Home Page Post methods
 router.post('/', [check('name', 'Minimum 4 Char Required ').isLength({ min: 4 }).trim().escape(),
     check('email', 'Please Enter Valid E-mail Id').isLength({ min: 5 }).trim().escape(),
     check('number', 'Please Enter Valid Mobile Number').trim().escape().matches(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im),
@@ -28,17 +28,13 @@ router.post('/', [check('name', 'Minimum 4 Char Required ').isLength({ min: 4 })
                 er[err.param] = [];
                 er[err.param].push(err.msg);
             }
+
         }
 
-        console.log(er);
+        // console.log(er);
 
         return res.render("index", { error: er });
     }
-
-
-
-
-
 
 })
 
