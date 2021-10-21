@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Ajax</title>
+    <link href="/stylesheets/style.css"/>
+    <script src="/javascripts/popper.min.js"></script>
+    <script src="/javascripts/bootstarp.min.js"></script>
+    <script src="/javascripts/jquery.js"></script>
+    
+
+</head>
+<body>
+<ul>
+  <li><a href="country">Add country</a></li>
+  
+
+</ul>
+
+    <div class="container">
+              <form method="POST" class="d-flex justify-content-center">
+                           <label>Select Country</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                           <select id="inputStatus"  class="form-control custom-select" onchange="myfunction(this.value)" name="_country">
+                                  <option selected disabled>Select one</option>
+                                   {{#each dbcountry}}<option value={{_id}}>{{countryname}}</option>{{/each}}
+                          </select> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label>Select State</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <select id="state" class="form-control custom-select" onchange="mystate(this.value)" name="_state">
+                                          <option selected disabled> Select one </option>
+                                  </select> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label>Select City</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <select id="city" class="form-control custom-select" name="_city">
+                                      <option selected disabled> Select one </option>
+                          </select>
+                </form>
+
+    </div>
+             
+    </body>
+
+    <script>
+        function myfunction(datavalue){
+            $('#state').html('')
+            $('#city').html('')
+            $.ajax({
+                url: 'http://localhost:3000/state/'+datavalue,
+                type: 'get',
+                data: {datavalue},
+                success: function(result){
+                    console.log(result)
+                        
+                        for( let state of result.data){
+                            let item = ' <option value='+ state._id+'>'+state.statename+'</option>'
+                             $('#state').append(item)
+                        }
+                }
+            })
+        }
+
+       function mystate(datavalue){
+            $('#city').html('')
+            $.ajax({
+                url:'http://localhost:3000/city/'+ datavalue,
+                type: 'get',
+                data:{datavalue},
+                success: function(cityresult){
+                    console.log(cityresult)
+                    for (let city of cityresult.cdata){
+                        let cityitem = '<option value='+ city._id+'>'+city.cityname+'</option>'
+                        $('#city').append(cityitem)
+                    }
+                }
+            })
+        }
+    </script>
+</html>
+

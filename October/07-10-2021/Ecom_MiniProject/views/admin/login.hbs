@@ -18,22 +18,33 @@
         <form method="post">
  
           <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email">
+             
+            <input type="email" name="email" class="form-control" placeholder="Email"> <br>
+            
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
               </div>
-            </div>
+            </div> 
           </div>
+                {{#if error.email}}<span style="color: rgb(255, 0, 0);">{{error.email.[0]}}</span><br>{{/if}}  
           <div class="input-group mb-3">
+           
             <input type="password" name="password" class="form-control" placeholder="Password">
+              
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
-            </div>
+              
+              </div>
+           
+              <span> <br></span> <br>
+              <h5>kl;</h5>
+              {{#if error.password}}<span style="color: rgb(255, 0, 0);">{{error.password.[0]}}</span><br>{{/if}}
           </div>
-      
+          <h5>kl;</h5>
+       {{!-- {{#if error.password}}<span style="color: rgb(255, 0, 0);">{{error.password.[0]}}</span><br>{{/if}} --}}
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">

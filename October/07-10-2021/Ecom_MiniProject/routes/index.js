@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
+const { check, validationResult } = require('express-validator');
+
 const { getLogin, postLogin } = require('../controller/admin/login');
 const { getSignUp, postSignUp } = require('../controller/admin/signUp');
 const { getchangepassword, postchangepassword } = require('../controller/admin/changepassword');
@@ -48,7 +50,9 @@ router.get('/dashboard', function(req, res, next) {
 });
 
 router.get('/login', getLogin);
-router.post('/login', postLogin);
+router.post('/login', [check('email', 'Email id is Requied').not().isEmpty(),
+    check('password', 'Password Is Requied').not().isEmpty()
+], postLogin);
 
 router.get('/signUp', getSignUp);
 router.post('/signup', postSignUp);

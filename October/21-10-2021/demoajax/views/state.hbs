@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Ajax</title>
+     <link href="/stylesheets/style.css"/>
+    <script src="/javascripts/popper.min.js"></script>
+    <script src="/javascripts/bootstarp.min.js"></script>
+    <script src="/javascripts/jquery.js"></script>
+</head>
+<body>
+<ul>
+  <li><a href="country">Add country</a></li>
+  <li><a href="city">Add City</a></li>
+
+</ul>
+    <form method="POST">
+        <input type="text" name="statename" placeholder="Enter state">
+  </select> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <label>Select City</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                         <select id="inputStatus"  class="form-control custom-select" onchange="myfunction(this.value)" name="_country">
+                        <option selected disabled>Select one</option>
+                         {{#each dbcountry}}
+                         <option value={{_id}}>{{countryname}}</option>
+                        {{/each}}
+
+                </select>
+        <input type="submit">
+
+    </form>
+
+
+    </body>
+</html>
