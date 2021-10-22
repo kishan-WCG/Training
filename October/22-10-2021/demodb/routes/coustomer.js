@@ -11,6 +11,7 @@ router.get('/', function(req, res) {
 
 router.post('/', async function(req, res) {
     try {
+
         var userdb = new coustomer({
             name: req.body.name,
             email: req.body.email,
@@ -69,11 +70,14 @@ router.post('/coustomerUpdate/:id', async function(req, res) {
         }
         let id = req.params.id;
         // console.log(id);
-
-        await coustomer.findByIdAndUpdate(id, userdb, { upsert: true }).lean();
+        await coustomer.updateOne({ email: 'email', }, { $set: { name: 'name', email: 'email', address: 'address', gender: 'gender' } }, { upsert: true });
+        await coustomer.findByIdAndUpdate(id, userdb).lean();
         console.log(userdb);
 
         res.redirect('/coustomer')
+
+
+
 
     } catch (error) {
         console.log(error);
@@ -81,5 +85,7 @@ router.post('/coustomerUpdate/:id', async function(req, res) {
         res.render('coustomer')
     }
 });
+
+
 
 module.exports = router
