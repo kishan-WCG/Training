@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery Demo</title>
+    <script src="/javascripts/popper.min.js"></script>
+    <script src="/javascripts/bootstarp.min.js"></script>
+    <script src="/javascripts/jquery.js"></script>
+    <style>
+        #div1{
+            width: 150px;
+            height: 20px;
+            background-color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="d-flex justify-content-center">
+          
+    <form method="POST" id="form">
+        
+       
+<h1>Jquery Event</h1>
+    <h2>FadeToggle</h2>
+        <input type="text" id="name" class="form-control" placeholder="Enter Name"> <br>
+        <input type="text" id="email" class="form-control"placeholder="Enter Email"> <br>
+        <input type="text" id="password" class="form-control" placeholder="Enter Password"> <br>
+        <input type="text" id="number" class="form-control" placeholder="Enter Number"> <br>
+
+        <input type="submit"  id="btn" class="btn btn-primary"/>
+        <button class="btn btn-primary" id="hide"> Hide </button>
+        <button class="btn btn-primary" id="btn2"> Animated </button>
+        <button class="btn btn-primary" id="btn3"> Item Appended </button>
+        <button class="btn btn-primary" id="btn4"> Item Remove </button>
+        <p> click the Appended Items</p>
+
+
+    <ol>
+        <li>Item 1</li>
+        <li>Item 2</li>
+  
+    </ol>
+
+
+    </form>
+    </div>
+
+<div id="div1"></div>
+</body>
+<script>
+    $(document).ready(function(){
+ 
+        $('#name , #email , #password , #number').focus(function(){
+            $(this).css('background-color','#9D9D9D');
+        });
+          $('#name , #email , #password , #number').blur(function(){
+            $(this).css('background-color','white');
+        });
+
+        $('#btn').hover(function(){
+            $(this).css('background-color','red');
+        });
+        $('#btn').mouseleave(function(){
+            $(this).css('background-color','black');
+        });
+
+        $('#btn').click(function(){
+            alert('Alert : - '+ $('h1').text());
+        });
+
+        $('h1').mouseenter(function(){
+             $("#btn").hide(1000);
+        });
+
+        $('h1').mouseleave(function(){
+             $('#btn').fadeIn(3000)
+        })
+
+        $('#hide').mouseenter(function(){
+            $('h2').fadeToggle(3000)
+        })
+
+         $("#btn2").mouseenter(function(){
+             $("#div1").css("color", "red").slideUp(2000).slideDown(2000);
+        });
+
+        $("#btn3").mouseenter(function(){
+            $('ol').append("<li>Appended item</li>")
+        })
+
+        $('#btn4').mouseenter(function(){
+            $('li').remove();
+        })
+
+
+        });
+
+    
+
+</script>
+</html>

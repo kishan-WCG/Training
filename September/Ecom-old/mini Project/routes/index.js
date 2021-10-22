@@ -95,7 +95,7 @@ router.post('/SignIn', function(req, res, next) {
                     res.redirect("/view-only-user");
                 }).catch(err => next(err))
 
-                // console.log('session checker' + req.session.user);
+                console.log('session checker' + req.session.user);
 
 
             } else {
