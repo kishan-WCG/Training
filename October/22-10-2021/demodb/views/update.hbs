@@ -11,33 +11,19 @@
     <script src="/javascripts/jquery.js"></script>
 </head>
 <body>
-
-
     <div class="d-flex justify-content-center">
-
- 
       <form method="POST">
-          <h1>Form</h1>
+        <h1>Form</h1>
         <input type="text" name="name" class="form-control" value="{{CoustomerId.name}}" placeholder="Enter name "> <br>
         <input type="text" name="email" class="form-control" value="{{CoustomerId.email}}"  placeholder="Enter Email Id"> <br>
         <input type="text" name="address" class="form-control" value="{{CoustomerId.otherInfo.address}}"  placeholder="Enter Address"><br>
-        <select class="form-control"value="{{CoustomerI.dotherInfo.gender}}"  name="gender">
-
+        <select class="form-control"value="{{CoustomerId.dotherInfo.gender}}"  name="gender">
             <option value="male" >Male</option>
             <option value="female">Female</option>
         </select> <br>
         <input type="submit" class="btn btn-primary">
-        
-
-
         {{message}}
-        
-    </form>
-   
-  </div>
-
-
-
-   
+      </form>
+    </div>
 </body>
 </html>

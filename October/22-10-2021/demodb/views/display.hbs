@@ -16,15 +16,14 @@
 <body>
     <div id="center">
     <div class="d-flex justify-content-center">
-
     <table class="table table-bordered table-striped text-center">
-
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Address</th>
                 <th>gender</th>
+                <th>Action</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -35,20 +34,13 @@
                 <td>{{email}}</td>
                 <td>{{otherInfo.address}}</td>
                 <td>{{otherInfo.gender}}</td>
-              
-
-
-        <th class="text-center"><a href="/coustomer/CoustomerUpdate/{{_id}}" class="btn btn-primary ">Edit</a>
-        <th class="text-center"><a href="/coustomer/CoustomerDelete/{{_id}}" class="btn btn-primary ">Delete</a>
-          
+            <th class="text-center"><a href="/coustomer/update/{{_id}}" class="btn btn-primary ">Edit</a>
+            <th class="text-center"><a href="/coustomer/delete/{{_id}}" class="btn btn-primary ">Delete</a>
             </tr>
             {{/each}}
-
         </tbody>
-        
-    </table>
-    
-    </div>
+       </table>
+       </div>
     <a href="/coustomer" class="btn btn-primary">Go To Add coustomer</a>
     </div>
 </body>
