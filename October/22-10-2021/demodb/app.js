@@ -11,7 +11,7 @@ var welcome = require('./routes/welcome');
 
 var app = express();
 mongoose
-    .connect("mongodb://login:login@localhost:27017/login")
+    .connect("mongodb://admin:admin@localhost:27017/Coustomer")
     .then(() => console.log("Connection open"))
     .catch(() => console.log("Error"));
 

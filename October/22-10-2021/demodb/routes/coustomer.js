@@ -70,7 +70,7 @@ router.post('/coustomerUpdate/:id', async function(req, res) {
         }
         let id = req.params.id;
         // console.log(id);
-        await coustomer.updateOne({ email: 'email', }, { $set: { name: 'name', email: 'email', address: 'address', gender: 'gender' } }, { upsert: true });
+        await coustomer.updateOne({ email: req.body.email, }, { $set: { name: req.body.name, email: req.body.email, otherInfo: { address: req.body.address, gender: req.body.gender } } }, { upsert: true });
         await coustomer.findByIdAndUpdate(id, userdb).lean();
         console.log(userdb);
 
@@ -86,6 +86,23 @@ router.post('/coustomerUpdate/:id', async function(req, res) {
     }
 });
 
+
+router.get('/CoustomerDelete/:id', function(req, res) {
+
+    var id = req.params.id;
+    // console.log(id);
+
+    coustomer.findByIdAndDelete(id, function(err, coustomer) {
+
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/coustomer/CoustomerDisplay/')
+        }
+
+    })
+
+});
 
 
 module.exports = router
