@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Practice</title>
+    {{!-Css Bootstrap CDN-  --}}
+    <link href="/stylesheets/style.css">
+    {{!-- Jquery CDN --}}
+    <script src="/jquery/jquery-3.6.0.js"></script>
+    {{!-- Jquery Validation CDN --}}
+    <script src="/javascripts/jqueryValidation.js"></script>
+    {{!-- Bootstrap JS CDN --}}
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/popper.min.js" ></script>
+  </head>
+<body>
+<div class="mx-auto">
+  <div class="row">
+    <div class="col">
+      <div class="container">
+    <h4 class="text-center">Ajax </h4>
+      <form class="row g-3" id="form" method="POST" enctype="multipart/form-data" >
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Enter First Name</label>
+          <input type="text" name="fName" class="form-control" id="fName">
+        </div>
+  
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Enter Last Name</label>
+          <input type="text" name="lName"  class="form-control" id="lName">
+        </div>
+  
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Address</label>
+          <textarea class="form-control"  name="address" id="address" > </textarea>
+        </div>
+  
+        <div class="col-md-4">
+          <label for="inputCity"  class="form-label">Gender</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="gender"  value="male">
+          <label class="form-check-label" for="flexRadioDefault1">Male</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="gender" value="female">
+          <label class="form-check-label" for="flexRadioDefault2">Female</label>
+        </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">Select Interest Area</label>
+            <select id="interest" name="interest" class="form-select">
+              <option selected disabled value="area1">Select Interest Area 1</option>
+              <option value="area1">Area 1 </option>
+              <option value="area2" >Area 2</option>
+              <option value="area3">Area 3</option>
+            </select>
+        </div>
+        <div id="hobby">
+          <div class="col-md-4">
+            <label class="form-check-label" for="flexRadioDefault2">Hobbies</label>
+         <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="hobbies"  value="sports" id="check">
+            <label class="form-check-label" for="flexCheckDefault">Sports</label>
+        </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="hobbies" value="gaming" id="check" >
+            <label class="form-check-label" for="flexCheckChecked">Gaming</label>
+          </div>
+        </div>
+        </div>
+        <div class="col-12">
+           <label class="form-check-label" for="flexCheckChecked">File Upload</label>
+           <input type="file" id="image"  name="image">
+        </div>
+        <div class="col-12">
+           <button type="submit"  class="btn btn-primary" id="btn">Submit</button>
+           <div class="btns"></div>
+        </div>
+</form>
+
+      </div>
+    </div>
+<div class="col">
+  <div class="container">
+      <table class="table" id="tbl">
+        <h4 class="text-center">Display Users </h4>
+        {{!-- SearchBar --}}
+        <input type="text" name="search" id="srch" class="b ">
+        <button class="searchBtn btn btn-info"  >Serach</button> 
+        <button class="clearBtn btn btn-warning"  >Clear</button><br>
+        <input type="checkbox" id="gender" name="gender" value="male"> Male
+        <input type="checkbox" id="gender" name="gender" value="female"> Female
+        <button class="genderBtn btn btn-warning"> Serach </button>
+
+           <thead> 
+              <tr>
+                 <th> <button class="sort tagUnderLine">Images</button> </th>
+                 <th> <button class="sort tagUnderLine" sorting= "1" id="sortName">Name</button> </th>
+                 <th> <button class="sort tagUnderLine">Gender</button> </th>
+                 <th> <button class="sort tagUnderLine">Address</button> </th>
+                 <th> <button class="sort tagUnderLine">Action</button> </th>
+              </tr>
+            </thead>
+            <tbody class="tbl-data">
+                  {{!-- {{#each users}}
+                      <tr id="{{_id}}">    
+                        <td> <img src="/images/{{image}}" height="50", width="50"/></td>
+                        <td>{{fName}} {{lName}}</td>
+                        <td>{{gender}}</td>
+                        <td>{{address}}</td>
+                        <td> <button class="btn btn-warning edit-Btn" id="{{_id}}" >Edit</button>
+                             <button class="btn btn-info delete-Btn" id="{{_id}}" >Delete</button></td>
+                        </tr>
+                    {{/each}} --}}
+             </tbody>
+    </table>
+            <span class="span"></span>
+            <span class="spanError"></span>
+            {{!-- Pagination --}}
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <button class="prev-btn page-link">Prev</button>
+    </li>
+    {{!-- {{#each arrCount}} --}}
+    <li class="page-item"><button class="page-link" btnVal="1">1</button></li>
+    <li class="page-item"><button class="page-link" btnVal="2">2</button></li>
+    <li class="page-item"><button class="page-link" btnVal="3">3</button></li>
+    {{!-- {{/each}} --}}
+
+    <li class="page-item">
+     <button class="next-btn page-link">Next</button>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+<div class="col">
+
+
+</div>
+</div></div>
+
+</body>
+<script src="/javascripts/user.js" ></script>
+</html>

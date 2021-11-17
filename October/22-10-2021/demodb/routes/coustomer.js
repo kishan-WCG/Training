@@ -21,8 +21,7 @@ router.post('/', async function(req, res) {
         res.render('coustomer', { message: "Coustomer Data Insert In DB" });
     } catch (error) {
         console.log(error);
-        console.log('Error During the Adding Data in DB');
-        res.render('coustomer');
+        res.redirect('/coustomer');
     }
 })
 
@@ -32,39 +31,31 @@ router.get('/display', async function(req, res) {
         res.render('display', { coustomerDisplay });
     } catch (err) {
         console.log(err);
+        res.redirect('/coustomer');
     }
 });
 
-router.get('/update/:id', async function(req, res) {
+router.get('/update', async function(req, res) {
     try {
         var CoustomerId = await coustomer.findById(req.params.id).lean();
         console.log(CoustomerId);
         res.render('update', { CoustomerId });
     } catch (err) {
         console.log(err);
+        res.redirect('/coustomer');
     }
+
+    res.render('update')
 
 })
 
-router.post('/update/:id', async function(req, res) {
+router.post('/update', async function(req, res) {
     try {
-        var userdb = {
-            name: req.body.name,
-            email: req.body.email,
-            otherInfo: {
-                address: req.body.address,
-                gender: req.body.gender
-            }
-        }
-        let id = req.params.id;
-        await coustomer.updateOne({ email: req.body.email, }, { $set: { name: req.body.name, email: req.body.email, otherInfo.address: otherInfo.req.body.address, gender: req.body.gender } }, { upsert: true });
-        await coustomer.findByIdAndUpdate(id, userdb).lean();
-        console.log(userdb);
+        await coustomer.updateOne({ email: req.body.email, }, { $set: { name: req.body.name, email: req.body.email, 'otherInfo.address': req.body.address, 'otherInfo.gender': req.body.gender } }, { upsert: true });
         res.redirect('/coustomer');
     } catch (error) {
         console.log(error);
-        console.log('Error During the Adding Data in DB');
-        res.redirect('coustomer');
+        res.redirect('/coustomer');
     }
 });
 

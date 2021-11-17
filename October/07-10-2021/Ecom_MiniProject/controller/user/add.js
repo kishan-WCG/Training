@@ -2,7 +2,7 @@
 const user = require('../../model/user')
 const area = require('../../model/area');
 const { rawListeners } = require('../../model/user');
-
+var bcrypt = require('bcryptjs');
 
 module.exports.getuser = function(req, res, next) {
 
@@ -22,7 +22,7 @@ module.exports.postuser = function(req, res, next) {
     var bodystate = {
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: req.b.password,
         address: req.body.address,
         photo: req.files.photo.name,
         _area: req.body._area
@@ -36,6 +36,8 @@ module.exports.postuser = function(req, res, next) {
         if (err) {
             return res.status(500).send(err);
         } else {
+
+
             sdata.save((err, result) => {
                 if (err) {
                     throw err;

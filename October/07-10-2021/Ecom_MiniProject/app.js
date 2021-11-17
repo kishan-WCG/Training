@@ -10,7 +10,7 @@ var expressfileupload = require('express-fileupload');
 //routes
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-// var nodemailer = require("nodemailer");
+
 const nodemailer = require("nodemailer");
 
 var app = express();
@@ -18,16 +18,13 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
-app.engine(
-    "hbs",
-    hbs({
-        extname: "hbs",
-        defaultLayout: "main",
-        layoutsDir: __dirname + "/views/layouts/",
+app.engine("hbs", hbs({
+    extname: "hbs",
+    defaultLayout: "main",
+    layoutsDir: __dirname + "/views/layouts/",
 
-        partialsDir: __dirname + "/views/admin/partials/",
-    })
-);
+    partialsDir: __dirname + "/views/admin/partials/",
+}));
 
 app.use(expressfileupload());
 app.use(logger("dev"));
@@ -42,14 +39,12 @@ mongoose
     .then(() => console.log("Connection Open"))
     .catch((error) => console.log(error))
 
-
 app.use(session({
     secret: 'keyboard cat',
     cookie: {
         maxAge: 65 * 24 * 60 * 60 * 1000
     }
 }))
-
 
 app.use("/admin", indexRouter);
 app.use("/users", usersRouter);

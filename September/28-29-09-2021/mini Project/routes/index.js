@@ -5,7 +5,7 @@ const admin = require('../model/admin');
 const { text } = require('express');
 const session = require('express-session');
 const nodemailer = require("nodemailer");
-
+var bcrypt = require('bcryptjs');
 var router = express.Router();
 
 /* GET home page. */
@@ -17,7 +17,8 @@ router.get('/SignUp', function(req, res, next) {
     res.render('SignUp');
 });
 
-router.post('/SignUp', function(req, res, next) {
+router.post('/SignUp', async function(req, res, next) {
+
     var fileobj = req.files.photo;
 
     fileobj.mv('public/images/' + fileobj.name, function(err) {
@@ -25,13 +26,14 @@ router.post('/SignUp', function(req, res, next) {
             return res.send("File not uploaded...");
 
     })
-
+    var solt = bcrypt.genSaltSync(10);
+    let hash = await bcrypt.hash(req.body.password, solt)
     var bodydata = {
         name: req.body.name,
         email: req.body.email,
         gender: req.body.gender,
         dob: req.body.dob,
-        password: req.body.password,
+        password: hash,
         address: req.body.address,
         city: req.body.city,
         age: req.body.age,
@@ -69,14 +71,16 @@ router.post('/SignIn', function(req, res, next) {
         if (user == null) {
             return res.json("Email Or Password Invalid");
         } else {
-            if (password == user.password) {
+
+            var bool = bcrypt.compareSync(req.body.password, user.password)
+            if (bool == false) {
+                res.send('Password is Invalid')
+            } else {
                 req.session.user = email;
                 console.log('session checker' + req.session.user);
                 res.redirect("/view-only-user");
-
-            } else {
-                res.json("Email Oe Password Invalid")
             }
+
         }
 
     }).catch((err) => {

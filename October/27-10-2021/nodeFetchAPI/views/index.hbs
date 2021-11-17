@@ -1,0 +1,30 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+
+    <div>
+
+              <div>
+
+        <h2 class="location"> <span>Weather Data</span></h2>
+        <hr/>
+        <h2 class="location">{{weather.name}}</h2>
+        <h2 class="location"> TimeZone :-{{weather.timezone}}</h2>
+        <h2 class="location"> Temp : -{{weather.main.temp}}</h2>
+        <h2 class="location"> Temp Min.. : -{{weather.main.temp_min}}</h2>
+        <h2 class="location"> Temp max.. : -{{weather.main.temp_max}}</h2>
+
+      </div>
+
+     
+
+    </div>
+  </body>
+</html>
