@@ -1,0 +1,83 @@
+
+{{!-- <div class="container"> --}}
+    <div class="row">
+        <div class="col">
+            <h3 class="text-center">Add Users</h3>
+            <form id="addform" class="form-control"> <br>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name"> <br>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email"> <br>
+                <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Enter Your Mobile"> <br>
+                <input type="password" name="password" id="password" class="form-control"
+                    placeholder="Enter Your password"> <br>
+                <input type="submit" class="add-btn btn btn-success" value="Submit">
+            </form>
+        </div>
+        <div class="col">
+            <h4>Action</h4>
+            <button id="logout" class="btn btn-primary">Logout</button>
+            <button id="export" class="btn btn-success">Export Users</button> <br><br>
+
+            <form>
+                <h6>User's Import Select CSV File</h6>
+                <input type="file" id="file" name="file" title="User's Import Select CSV File"> <br><br>
+                <button class="btn btn-danger" id="btn-import">Submit</button> 
+            </form>
+            <hr>
+            {{!-- Files Model Data display Table  --}}
+            <table class="table filesTable">
+                <tr class="table-success">
+                    <thead>
+                    <td>File's Name</td>
+                    <td>Total </td>
+                    <td>Duplicated </td>
+                    <td>Discarded </td>
+                    <td>Total Uploaded </td>
+                    <td>Status</td>
+                    
+                    </thead>
+                </tr>
+            </table>
+
+            {{!-- Count Display  Error Message Display --}}
+            <div id="responce"></div>
+        </div>
+
+        <div class="col">
+            <h3>Display Users</h3>
+            <hr>
+            <table class="tbl table">
+                <tr class="table-success">
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Mobile</td>
+                </tr>
+            </table>
+            <hr>
+            {{!-- Table For CSV Import --}}
+            <h5>Csv-Json User's </h5>
+            <hr>
+            <form>
+                <table class="csvTbl table table-dark table-bordered border-primary">
+                    <tr class="table-success">
+                         <td>First Field</td>
+                        <td>Secound Field</td>
+                        <td>DB Field</td>
+                    </tr>
+                </table>
+                <input type="submit" id="csvBtn" class="btn btn-primary"> 
+            </form>
+        </div>
+    </div>
+{{!-- </div> --}}
+
+
+{{!-- Ajax File --}}
+
+{{!-- Ajax File Logout --}}
+<script src="/js/ajaxLogout.js"></script>
+{{!-- Ajax File Add User --}}
+<script src="/js/ajaxAddUser.js"></script>
+{{!-- Ajax File Export Users --}}
+<script src="/js/ajaxexport.js"></script>
+{{!-- Ajax File Import Users --}}
+<script src="/js/ajaximport.js"></script>

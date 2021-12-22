@@ -1,0 +1,39 @@
+<html>
+    <head>
+       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+<h4>Select Categoty</h4>
+<select name="category" id="category">
+  <option value="category" selected disabled>Select CategoryName</option>
+  {{#each category}}
+  <option value="{{_id}}">{{categoryName}}</option>
+  {{/each}}
+  </select>
+
+    <ul id="products">
+   </ul>
+
+    </body>
+    <script>
+        
+    $(document).ready(function(){
+
+        $('#category').on('change', function(){
+            let categoryId = $('option:selected',this).val();
+             $.ajax({
+                url: '/populate/'+ categoryId,
+                method: 'GET',    
+                success: function(res) {
+                    $('#products').html("")
+                    for(let product of res.products){
+                        let item = `<li>productName=${product.productName} - ${product._category.categoryName}</li> `
+                        $('#products').append(item)
+                    }
+                }
+             });
+        })
+ 
+    }) 
+</script>
+</html>

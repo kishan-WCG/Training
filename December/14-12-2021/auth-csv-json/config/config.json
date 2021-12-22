@@ -1,0 +1,14 @@
+{
+    "port": 3003,
+    "mongodb": {
+        "localhost": "localhost",
+        "port": 27017,
+        "username": "admin",
+        "password": "admin",
+        "database": "Auth"
+    },
+    "site": {
+        "url": "http://localhost:3003",
+        "port": 3003
+    }
+}
