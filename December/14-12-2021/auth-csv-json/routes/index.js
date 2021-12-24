@@ -261,14 +261,11 @@ router.post("/user/csvimport/:fileName", async function(req, res) {
 
 router.get('/user/filesmodel', async function(req, res) {
     try {
-
-        let filesData = await filesModel.find();
-
-
+        let filesData = await filesModel.find({ mappingbj: { $ne: null } });
+        // console.log(filesData)
         res.json({
             type: "success",
             filesData: filesData
-
         });
     } catch (error) {
         console.log(error);
@@ -277,7 +274,6 @@ router.get('/user/filesmodel', async function(req, res) {
             message: "Error During the FilesModel Data Geting "
         })
     }
-
 });
 
 
@@ -296,8 +292,6 @@ router.post("/user/addfield", async function(req, res) {
         console.log(error);
         res.json({ type: "error", message: "Error During the addFields" })
     }
-
-
 });
 
 // userhome Page Post Method

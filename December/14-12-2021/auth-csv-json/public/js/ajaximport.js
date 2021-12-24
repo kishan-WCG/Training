@@ -1,33 +1,59 @@
 // Import User's Ajax Call
 $(document).ready(function() {
+    socket = io(window.location.origin);
+    //Send new tab id to store in session
+    socket.on("connect", function() {
+        console.log("connected Socket.io")
+    });
+    socket.on("fileName", (start) => {
+        $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary"> ${start.fileDisplay}  being processed </li></ul>`)
+        setTimeout(function() { $('#responce').html(""); }, 1000);
+        // alert('File is Starting' + data.fileDisplay)
+        console.log(start.fileDisplay); // world
+        console.log('aaaaaaaaaaaaaa');
+    });
+    setTimeout(function() {
+        socket.on("fileStop", (stop) => {
+            $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary"> ${stop.fileDisplay}  being processing completed </li></ul>`)
+            setTimeout(function() { $('#responce').html(""); }, 1000);
+            // alert('File is Starting' + data.fileDisplay)
+            console.log(stop.fileDisplay); // world
+            console.log('aaaaaaaaaaaaaa');
+        });
+    }, 3000);
+
+
 
     // For Files model Data Desiplay Ajax code...
-    setInterval(function() {
+    function fileDisplay() {
         $.ajax({
             url: '/user/filesmodel',
             method: 'GET',
             success: function(res) {
                 console.log(res);
                 if (res.type == "success") {
+
                     $('.tblHide').remove()
                     for (const file of res.filesData) {
-                        $('.filesTable').append("<tr class='table-success tblHide'> <td>" + file.name + "</td> <td>" + file.totalRecord + "</td> <td>" + file.duplicate + "</td> <td>" + file.invalid + "</td> <td>" + file.totalUpload + "</td><td>" + file.status + "</td>");
+                        $('.filesTable').append("<tr class='table-info tblHide'> <td>" + file.name + "</td> <td>" + file.totalRecord + "</td> <td>" + file.duplicate + "</td> <td>" + file.invalid + "</td> <td>" + file.totalUpload + "</td><td>" + file.status + "</td>");
                     }
                 } else {
                     alert(res.message)
                 }
             }
         });
+    }
+    fileDisplay();
+    // SetInterval User ( for 5 Sec Funcation Call ) 
+    setInterval(function() {
+        fileDisplay();
     }, 5000);
 
     let fileName = null;
     let fieldobj = {};
-
     $(document).on('change', '.dbfield', function() {
-
         let $this = $(this)
-
-        // Adding New Fields  using Jquery Prompt!!
+            // Adding New Fields  using Jquery Prompt!! ( USE JQUERY PROMPT )
         if ($(this).val() === "add") {
             $.confirm({
                 title: 'Prompt!',
@@ -151,10 +177,10 @@ $(document).ready(function() {
                     setTimeout(function() {
                         $('.field').html("");
                         $('#responce').html("");
-                    }, 5000);
+                    }, 2000);
                 } else {
                     $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary">Please Select CSV File  </li></ul>`)
-                    setTimeout(function() { $('#responce').html(""); }, 5000);
+                    setTimeout(function() { $('#responce').html(""); }, 3000);
                 }
             }
         })
@@ -194,7 +220,7 @@ $(document).ready(function() {
                 } else {
                     $('.field').html(" ")
                     $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary">Please Select CSV File... </li></ul>`)
-                    setTimeout(function() { $('#responce').html(""); }, 5000);
+                    setTimeout(function() { $('#responce').html(""); }, 000);
                 }
             }
         });
