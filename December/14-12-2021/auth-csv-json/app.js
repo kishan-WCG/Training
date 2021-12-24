@@ -46,9 +46,12 @@ async function connectiondb() {
         (function Cronrun() {
             if (config.cron.scheduler === "on") {
                 for (const file of Object.keys(config.cron.files)) {
+
+
                     if (config.cron.files[file].active) {
                         require(`./cronTask/${file}`)(config.cron.files[file].time)
                     }
+
                 }
             }
         })();

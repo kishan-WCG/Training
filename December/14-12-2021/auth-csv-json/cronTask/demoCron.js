@@ -5,36 +5,32 @@ let fileModel = require('../model/filesModel');
 let usermodel = require('../model/usersModel');
 const cron = require("node-cron");
 
-let isActive = true
-mongoose.connect('mongodb://admin:admin@localhost:27017/Auth')
+
+mongoose.connect(
+        `mongodb://${config.mongodb.username}:${config.mongodb.password}@${config.mongodb.localhost}:${config.mongodb.port}/${config.mongodb.database}`)
     .then(() => { console.log(`Server Start On`) })
     .catch((error) => { console.log(error) })
 
 // Email Validation ( In Csv Import )
-checkEmail = function(email) {
-    let validRegex =
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    return email.match(validRegex);
-};
+// checkEmail = function(email) {
+//     let validRegex =
+//         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+//     return email.match(validRegex);
+// };
 
 // Mobile Validation ( In Csv Import )
-checkMobile = function(mobile) {
-    let validRegex = /^[0-9]{10}$/;
-    return mobile.match(validRegex);
-};
-
-isActive = false
+// checkMobile = function(mobile) {
+//     let validRegex = /^[0-9]{10}$/;
+//     return mobile.match(validRegex);
+// };
 
 // Creating a cron job which runs on every 10 second
-
-
 
 module.exports = function(time) {
     cron.schedule(time, async function() {
         try {
-
-            let file = await fileModel.findOne({ status: { $ne: "Success" } });
-
+            let file = await fileModel.findOne({ status: { $ne: "Success" }, mappingbj: { $ne: null }, });
+            console.log(file)
 
             if (!file) {
                 console.log('No File Pending...');
@@ -107,7 +103,6 @@ module.exports = function(time) {
                         inValid++;
                     }
                 }
-
                 // Below  Query For Insert Record in UserModel (Record for Final Output in Field Map...)
                 uploadedBy = await usermodel.insertMany(totalUpload);
 
@@ -116,12 +111,14 @@ module.exports = function(time) {
                     $set: {
                         mappingbj: fieldMap,
                         totalRecord: totalRecords,
+                        csvDuplicateUsers: csvDuplicateUsers,
                         duplicate: duplicates,
                         invalid: inValid,
                         totalUpload: uploadedBy.length,
                         status: "Success"
                     }
                 });
+
                 socket.emit("fileStop", { fileDisplay });
                 console.log(fileDisplay);
             }

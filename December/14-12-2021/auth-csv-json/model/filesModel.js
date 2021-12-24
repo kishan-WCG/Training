@@ -29,6 +29,10 @@ let fileSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
+    csvDuplicateUsers: {
+        type: String,
+        default: 0
+    },
     uploadBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"

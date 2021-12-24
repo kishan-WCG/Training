@@ -2,6 +2,8 @@
 $(document).ready(function() {
 
     // All Users Display
+
+    /*
     $.ajax({
         url: '/user/getAllUser',
         method: 'get',
@@ -12,6 +14,8 @@ $(document).ready(function() {
             }
         }
     });
+    */
+
     // Form Validation
     $("#addform").validate({
         rules: {

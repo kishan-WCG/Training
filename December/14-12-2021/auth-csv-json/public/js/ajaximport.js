@@ -5,23 +5,30 @@ $(document).ready(function() {
     socket.on("connect", function() {
         console.log("connected Socket.io")
     });
-    socket.on("fileName", (start) => {
-        $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary"> ${start.fileDisplay}  being processed </li></ul>`)
-        setTimeout(function() { $('#responce').html(""); }, 1000);
-        // alert('File is Starting' + data.fileDisplay)
-        console.log(start.fileDisplay); // world
-        console.log('aaaaaaaaaaaaaa');
-    });
-    setTimeout(function() {
-        socket.on("fileStop", (stop) => {
-            $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary"> ${stop.fileDisplay}  being processing completed </li></ul>`)
-            setTimeout(function() { $('#responce').html(""); }, 1000);
-            // alert('File is Starting' + data.fileDisplay)
-            console.log(stop.fileDisplay); // world
-            console.log('aaaaaaaaaaaaaa');
-        });
-    }, 3000);
+    // File Start Message Print Using the Socket.io
+    // setTimeout(function() {
+    //     socket.on("fileName", (start) => {
+    //         $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary"> ${start.fileDisplay}  File Start</li></ul>`)
+    //         setTimeout(function() { $('#responce').html(""); }, 2000);
+    //         console.log(start.fileDisplay);
+    //     });
+    // }, 2000);
 
+
+    socket.on("fileName", (start) => {
+        $('#responceOne').html(`<ul class="list-group"><li class="list-group-item list-group-item-danger"> ${start.fileDisplay} being processed</li></ul>`)
+        setTimeout(function() { $('#responce').html(""); }, 2000);
+        console.log('Start' + start.fileDisplay);
+    });
+
+
+    // File Stop Message Print Using the Socket.io
+
+    socket.on("fileStop", (stop) => {
+        $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary"> ${stop.fileDisplay}  processing completed </li></ul>`)
+        setTimeout(function() { $('#responce').html(""); }, 2000);
+        console.log('Stop' + stop.fileDisplay);
+    });
 
 
     // For Files model Data Desiplay Ajax code...
@@ -32,10 +39,9 @@ $(document).ready(function() {
             success: function(res) {
                 console.log(res);
                 if (res.type == "success") {
-
-                    $('.tblHide').remove()
+                    $('.tblHide').remove();
                     for (const file of res.filesData) {
-                        $('.filesTable').append("<tr class='table-info tblHide'> <td>" + file.name + "</td> <td>" + file.totalRecord + "</td> <td>" + file.duplicate + "</td> <td>" + file.invalid + "</td> <td>" + file.totalUpload + "</td><td>" + file.status + "</td>");
+                        $('.filesTable').append("<tr class='tblHide table-info '> <td>" + file.name + "</td> <td>" + file.totalRecord + "</td>  <td>" + file.csvDuplicateUsers + "</td>  <td>" + file.duplicate + "</td> <td>" + file.invalid + "</td> <td>" + file.totalUpload + "</td><td>" + file.status + "</td>");
                     }
                 } else {
                     alert(res.message)
@@ -44,11 +50,30 @@ $(document).ready(function() {
         });
     }
     fileDisplay();
+
     // SetInterval User ( for 5 Sec Funcation Call ) 
     setInterval(function() {
         fileDisplay();
     }, 5000);
 
+    // DisplayUsers
+    function displayUsers() {
+        $.ajax({
+            url: '/user/getAllUser',
+            method: 'get',
+            success: function(res) {
+                $('.hideTr').remove()
+                for (const users of res.allUser) {
+                    $('.tbl').append("<tr class='hideTr table-info'> <td>" + users.name + "</td> <td>" + users.email + "</td> <td>" + users.mobile + "</td></tr>");
+                }
+            }
+        });
+    }
+    displayUsers();
+    // SetInerval Funcation For Display users
+    setInterval(function() {
+        displayUsers();
+    }, 5000);
     let fileName = null;
     let fieldobj = {};
     $(document).on('change', '.dbfield', function() {
@@ -177,7 +202,7 @@ $(document).ready(function() {
                     setTimeout(function() {
                         $('.field').html("");
                         $('#responce').html("");
-                    }, 2000);
+                    }, 1000);
                 } else {
                     $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary">Please Select CSV File  </li></ul>`)
                     setTimeout(function() { $('#responce').html(""); }, 3000);

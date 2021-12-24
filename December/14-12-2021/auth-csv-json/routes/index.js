@@ -12,18 +12,6 @@ const fs = require("fs");
 const multer = require("multer");
 const csv = require("csvtojson");
 
-// Email Validation ( In Csv Import )
-// function checkEmail(email) {
-//     let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-//     return email.match(validRegex);
-// }
-
-// Mobile Validation ( In Csv Import )
-// function checkMobile(mobile) {
-//     let validRegex = /^[0-9]{10}$/;
-//     return mobile.match(validRegex);
-// }
-
 // Multer File Upload
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -41,22 +29,23 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
+/*
 // Auth function - VerifyToken ---- Global Funcation
-// function authJWT(req, res, next) {
-//     let token = req.cookies.Token;
-//     const privatekey = "aihdkloihgjeosjfyrnbvsjeirnfbdks";
-//     jwt.verify(token, privatekey, function(err, user) {
-//         if (err) {
-//             console.log(err);
-//             res.redirect("/login");
-//         } else {
-//             req.user = user;
-//             return next();
-//         }
-//     });
-// }
+function authJWT(req, res, next) {
+    let token = req.cookies.Token;
+    const privatekey = "aihdkloihgjeosjfyrnbvsjeirnfbdks";
+    jwt.verify(token, privatekey, function(err, user) {
+        if (err) {
+            console.log(err);
+            res.redirect("/login");
+        } else {
+            req.user = user;
+            return next();
+        }
+    });
+} 
 
+*/
 /* GET home page. */
 router.get("/", function(req, res, next) {
     res.render("index", { title: "Express" });
@@ -242,7 +231,7 @@ router.post("/user/csvimport/:fileName", async function(req, res) {
         // uploadedBy = await usermodel.insertMany(totalUpload);
 
         // Below Query For Insert Record (Valid and Invalid and Duplicated User Count )
-        await filesModel.updateOne({ name: fileName }, { $set: { mappingbj: fieldMap, filePath: csvFilePath } });
+        await filesModel.updateOne({ name: fileName }, { $set: { mappingbj: fieldMap, filePath: csvFilePath, status: "in Progress" } });
 
         res.json({
             type: "success",
@@ -262,7 +251,7 @@ router.post("/user/csvimport/:fileName", async function(req, res) {
 router.get('/user/filesmodel', async function(req, res) {
     try {
         let filesData = await filesModel.find({ mappingbj: { $ne: null } });
-        // console.log(filesData)
+
         res.json({
             type: "success",
             filesData: filesData
