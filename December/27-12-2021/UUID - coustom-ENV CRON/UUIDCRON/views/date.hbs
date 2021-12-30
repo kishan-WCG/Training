@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BirthDat Calculate</title>
+</head>
+<body>
+    
+    <form method="post" id="submit">
+        <label>Please Select the Date Of Birth</label>
+        <input type="date" id="date-input" name="dob">
+        <button>Submit</button>
+    </form>
+
+</body>
+{{!-- <script>
+$(document).ready(function() {
+    $('#submit').on('click', function(){
+        var date = new Date($('#date-input').val());
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        console.log(date)
+
+        $.ajax({
+            url:"/date",
+            method: 'post',
+            data:{day:day,month:month,year:year},
+            success :function(res){
+                
+             
+            }
+        })
+       
+    });
+
+});
+
+ 
+    </script> --}}
+
+</html>
