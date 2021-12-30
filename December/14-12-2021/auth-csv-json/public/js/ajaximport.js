@@ -14,20 +14,22 @@ $(document).ready(function() {
     //     });
     // }, 2000);
 
-
+    // File Stop Message Print Using the Socket.io
     socket.on("fileName", (start) => {
-        $('#responceOne').html(`<ul class="list-group"><li class="list-group-item list-group-item-danger"> ${start.fileDisplay} being processed</li></ul>`)
-        setTimeout(function() { $('#responce').html(""); }, 2000);
-        console.log('Start' + start.fileDisplay);
+        console.log(start.file);
+        $('#responceOne').html(`<ul class="list-group"><li class="list-group-item list-group-item-danger"> ${start.file} being processed</li></ul>`)
+        setTimeout(function() { $('#responceOne').html(""); }, 3000);
+        console.log('Start' + start.file);
     });
 
 
     // File Stop Message Print Using the Socket.io
 
     socket.on("fileStop", (stop) => {
-        $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary"> ${stop.fileDisplay}  processing completed </li></ul>`)
-        setTimeout(function() { $('#responce').html(""); }, 2000);
-        console.log('Stop' + stop.fileDisplay);
+        console.log(stop.fileDisplay);
+        $('#responceTwo').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary"> ${stop.file}  processing completed </li></ul>`)
+        setTimeout(function() { $('#responceTwo').html(""); }, 3000);
+        console.log('Stop' + stop.file);
     });
 
 
@@ -78,7 +80,7 @@ $(document).ready(function() {
     let fieldobj = {};
     $(document).on('change', '.dbfield', function() {
         let $this = $(this)
-            // Adding New Fields  using Jquery Prompt!! ( USE JQUERY PROMPT )
+            // Adding New Fields  using Jquery Prompt!! ( USE JQUERY PROMPT ! )
         if ($(this).val() === "add") {
             $.confirm({
                 title: 'Prompt!',
@@ -131,13 +133,12 @@ $(document).ready(function() {
             });
             return;
         }
+        // BELOW CODE DROPDOWN VALUE HIDE AND SHOW 
         let previousValue = $(this).attr('name');
-        console.log(previousValue);
         $(this).attr('name', $(this).val());
         let current = $(this).val();
-        console.log(current);
 
-        // Hide and Show in DB Fiel
+        // HIDE AND SHOW CONDITION..
         if (previousValue === current) {
             return;
         }
@@ -168,26 +169,25 @@ $(document).ready(function() {
         }
     });
 
-    // Submit Btn from display CSV File in Table Formate (First Field - Secound Field - DB Field)
+    // SUBMIT DATA FROM CHOOSE FILE TO TABLE FORMATE LIKE ( FIRST FIELD - SECOUND FIELD - DB-FIELD ) 
     $(document).on("click", "#csvBtn", function(e) {
         e.preventDefault();
         let fieldMap = {}
 
-        // Select value (MAP)
+        //SELECT VALUE AND CREATE MAP.. 
         $(".field").each(function() {
             let checkboxval = $(this).attr('id')
             let dbField = $(`#${checkboxval}-dropdown option:selected`).val();
             fieldMap[dbField] = checkboxval;
         });
-
-        console.log(fieldMap);
+        // BELOW CODE IF MAPOBJECT NULL THEN SHOW ERROR IN DISPLAY..
         if (Object.values(fieldMap).includes('')) {
             // Erro Message for null Obj DB-Fields
             $('#responce').html(`<ul class="list-group"><li class="list-group-item list-group-item-primary">Please Select Db-Fields Values </li></ul>`)
-            setTimeout(function() { $('#responce').html(""); }, 5000)
+            setTimeout(function() { $('#responce').html(""); }, 3000)
             return
         }
-
+        // THIS AJAX CALL FOR FIELDMAP AND FILENAME TO SEND ROUTERS 
         $.ajax({
             url: '/user/csvimport/' + fileName,
             method: 'post',

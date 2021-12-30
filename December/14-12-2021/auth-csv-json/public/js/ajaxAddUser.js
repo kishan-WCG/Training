@@ -3,7 +3,8 @@ $(document).ready(function() {
 
     // All Users Display
 
-    /*
+    /* *** Test perpose
+    
     $.ajax({
         url: '/user/getAllUser',
         method: 'get',

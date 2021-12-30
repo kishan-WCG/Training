@@ -9,9 +9,6 @@ var cors = require('cors')
 
 global.config = require('./config/config.json');
 global.authJWT = require('./globalFuncation/auth');
-const validationGlobal = require('./globalFuncation/regularExpression');
-global.checkEmail = validationGlobal.checkEmail;
-global.checkMobile = validationGlobal.checkMobile;
 
 let userModel = require('./model/usersModel');
 var indexRouter = require('./routes/index');
@@ -32,6 +29,37 @@ io.on("connection", function(socket) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// Redis connection
+
+const redis = require('redis');
+
+(async() => {
+    try {
+        global.subscriber = redis.createClient();
+        subscriber.on('error', (err) => {
+            console.log('Redis Client Error', err)
+        });
+        await subscriber.connect();
+        console.log('Connection Done APP.JS');
+
+        await subscriber.subscribe("cronNotification", function(payload) {
+            let { message, file } = JSON.parse(payload)
+            if (message == "fileStart") {
+                socket.emit("fileName", { file });
+            }
+            if (message == "fileStop") {
+                socket.emit("fileStop", { file });
+            }
+        });
+        // await subscriber.subscribe("fileStop", function(fileDisplay) {
+        //     socket.emit("fileStop", { fileDisplay })
+        // });
+    } catch (error) {
+        console.log(error)
+    }
+})();
+
+
 async function connectiondb() {
     try {
         await mongoose.connect(
@@ -43,18 +71,15 @@ async function connectiondb() {
         // });
 
         //  Self Function Call for Scheduler
-        (function Cronrun() {
-            if (config.cron.scheduler === "on") {
-                for (const file of Object.keys(config.cron.files)) {
-
-
-                    if (config.cron.files[file].active) {
-                        require(`./cronTask/${file}`)(config.cron.files[file].time)
-                    }
-
-                }
-            }
-        })();
+        // (function Cronrun() {
+        //     if (config.cron.scheduler === "on") {
+        //         for (const file of Object.keys(config.cron.files)) {
+        //             if (config.cron.files[file].active) {
+        //                 require(`./cronTask/${file}`)(config.cron.files[file].time)
+        //             }
+        //         }
+        //     }
+        // })();
     } catch (error) {
         console.log(error);
         console.log('Databse Connection Errro');

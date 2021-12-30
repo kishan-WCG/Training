@@ -1,0 +1,4 @@
+Run Two File : node bin/www first 
+second File : node cron.js 
+
+adding cron with Redis 

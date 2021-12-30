@@ -19,7 +19,7 @@
         "scheduler": "on",
         "files": {
             "demoCron": {
-                "time": "*/5 * * * * *",
+                "time": "*/30 * * * * *",
                 "name": "demoCron.js",
                 "active": true
             },

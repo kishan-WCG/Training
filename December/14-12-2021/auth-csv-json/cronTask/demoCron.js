@@ -4,43 +4,35 @@ const mongoose = require('mongoose');
 let fileModel = require('../model/filesModel');
 let usermodel = require('../model/usersModel');
 const cron = require("node-cron");
-
+const validationGlobal = require('../globalFuncation/regularExpression');
+let checkEmail = validationGlobal.checkEmail;
+let checkMobile = validationGlobal.checkMobile;
 
 mongoose.connect(
         `mongodb://${config.mongodb.username}:${config.mongodb.password}@${config.mongodb.localhost}:${config.mongodb.port}/${config.mongodb.database}`)
     .then(() => { console.log(`Server Start On`) })
     .catch((error) => { console.log(error) })
 
-// Email Validation ( In Csv Import )
-// checkEmail = function(email) {
-//     let validRegex =
-//         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-//     return email.match(validRegex);
-// };
-
-// Mobile Validation ( In Csv Import )
-// checkMobile = function(mobile) {
-//     let validRegex = /^[0-9]{10}$/;
-//     return mobile.match(validRegex);
-// };
-
-// Creating a cron job which runs on every 10 second
-
 module.exports = function(time) {
     cron.schedule(time, async function() {
         try {
             let file = await fileModel.findOne({ status: { $ne: "Success" }, mappingbj: { $ne: null }, });
-            console.log(file)
-
             if (!file) {
                 console.log('No File Pending...');
             } else {
 
                 // let fileDisplay = file.name
                 let fileDisplay = file.name
-                socket.emit("fileName", { fileDisplay });
-                console.log(fileDisplay);
 
+                //   ----       BELOW TWO LINE SOCKET.IO        ----
+
+                // socket.emit("fileName", { fileDisplay });
+                //  Using the Redis Socket.io ---------
+                // console.log('Connection Done');
+                publisher.publish("cronNotification", JSON.stringify({
+                    message: "fileStart",
+                    file: fileDisplay
+                }));
                 let fileName = file.filePath;
                 let fName = file.name;
                 let fieldMap = file.mappingbj;
@@ -78,7 +70,8 @@ module.exports = function(time) {
                         filterUsers.push(user);
                     }
                 }
-                // Field Map 
+                console.log(filterUsers)
+                    // Field Map 
                 for (const jsonAr of filterUsers) {
                     let name = jsonAr[fieldMap.name];
                     let email = jsonAr[fieldMap.email];
@@ -118,9 +111,15 @@ module.exports = function(time) {
                         status: "Success"
                     }
                 });
+                console.log('DEMOCRON.JS')
 
-                socket.emit("fileStop", { fileDisplay });
-                console.log(fileDisplay);
+                publisher.publish("cronNotification", JSON.stringify({
+                    message: "fileStop",
+                    file: fileDisplay
+
+                }));
+                // socket.emit("fileStop", { fileDisplay });
+                // console.log(fileDisplay);
             }
         } catch (error) {
             console.log(error);

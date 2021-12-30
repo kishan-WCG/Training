@@ -36,7 +36,10 @@
             </table>
             {{!-- Count Display  Error Message Display --}}
             <div id="responceOne"></div>
+            {{!-- cron message display for start  --}}
             <div id="responce"></div>
+            {{!-- cron message display for stop  --}}
+            <div id="responceTwo"></div>
         </div>
 
         <div class="col">
@@ -71,19 +74,6 @@
 {{!-- Ajax File --}}
 
 {{!-- Ajax File Logout --}}
-  
-  <script>
-
-$(document).ready(function() {
-     socket = io(window.location.origin);
-        //Send new tab id to store in session
-        socket.on("connect", function () {
-            console.log("connected..!!!!!..")
-        });
-})
-
-  </script>
-
 <script src="/js/ajaxLogout.js"></script>
 {{!-- Ajax File Add User --}}
 <script src="/js/ajaxAddUser.js"></script>

@@ -1,5 +1,6 @@
 // Export User's Ajax Call
 $(document).ready(function() {
+    // EXPORT  FILE AJAX CODE  
     $(document).on("click", "#export", function() {
         $.ajax({
             url: '/user/export',
